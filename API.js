@@ -114,7 +114,7 @@ function addContact(){
     let newContact = document.getElementById("contactName").value; //Get the new contact name the user wants to add
     document.getElementById("addContactResult").innerHTML = "";
 
-    let tmp = {name: newName, userId: userId};
+    let tmp = {name: newContact, userId: userId};
     let jsonPayload = JSON.stringify( tmp );
 
     let url = urlBase + '/AddContact.' + extension;
@@ -148,7 +148,7 @@ function searchContact()
 	
 	let contactList = "";
 
-	let tmp = {search: newSearch, userId: userId};
+	let tmp = {search: srch, userId: userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/SearchContact.' + extension;
