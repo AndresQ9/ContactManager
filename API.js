@@ -5,7 +5,7 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-function doLogin()
+function login()
 {
 	userId = 0;
 	firstName = "";
@@ -101,7 +101,7 @@ function readCookie()
 	}
 }
 
-function doLogout()
+function logout()
 {
 	userId = 0;
 	firstName = "";
