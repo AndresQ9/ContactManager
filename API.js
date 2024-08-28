@@ -12,15 +12,15 @@ function doLogin()
 	lastName = "";
 	
     //Pull the username and password from the HTML
-	let login = document.getElementById("loginName").value;
-	let password = document.getElementById("loginPassword").value;
+	let username = document.getElementById("username").value;
+	let password = document.getElementById("password").value;
 
     //Hash the password
 	var hash = md5( password );
 	
 	document.getElementById("loginResult").innerHTML = "";
 
-	var tmp = {login:login,password:hash};
+	var tmp = {username: username, password: hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/Login.' + extension;
