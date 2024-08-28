@@ -5,8 +5,7 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-function login()
-{
+function login(){
 	userId = 0;
 	firstName = "";
 	lastName = "";
@@ -60,16 +59,14 @@ function login()
 
 }
 
-function saveCookie()
-{
+function saveCookie(){
 	let minutes = 30;
 	let date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));	
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
-function readCookie()
-{
+function readCookie(){
 	userId = -1;
 	let data = document.cookie;
 	let splits = data.split(",");
@@ -101,8 +98,7 @@ function readCookie()
 	}
 }
 
-function logout()
-{
+function logout(){
 	userId = 0;
 	firstName = "";
 	lastName = "";
@@ -141,8 +137,7 @@ function addContact(){
 
 }
 
-function searchContact()
-{
+function searchContact(){
 	let srch = document.getElementById("searchContact").value;
 	document.getElementById("contactSearchResult").innerHTML = "";
 	
