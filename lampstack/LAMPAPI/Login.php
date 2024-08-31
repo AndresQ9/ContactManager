@@ -36,7 +36,7 @@
 	{
 		return json_decode(file_get_contents('php://input'), true);
 	}
-asdaw
+
 	function sendResultInfoAsJson( $obj )
 	{
 		header('Content-type: application/json');
