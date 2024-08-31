@@ -1,18 +1,20 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$color = $inData["color"];
+	$contact = $inData["contact"];
 	$userId = $inData["userId"];
+	$email = $inData["email"]
+	$phone = $inData["phone"]
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); //TODO
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Colors (UserId,Name) VALUES(?,?)");
-		$stmt->bind_param("ss", $userId, $color);
+		$stmt = $conn->prepare("INSERT into Contacts (UserId,Name,Email,Phone) VALUES(?,?,?,?)"); //TODO date created can possibly be automatically created through database?
+		$stmt->bind_param("ssss", $userId, $contact, $email, $phone);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
