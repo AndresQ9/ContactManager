@@ -1,6 +1,6 @@
 <?php
 
-require '../inc/db_connection.php';
+require '../dbConnect.php';
 
 function getContactList() {
 
