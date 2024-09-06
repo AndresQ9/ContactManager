@@ -16,7 +16,29 @@
 <body>
     <div class="centered-block">
         <h1>Your Contacts</h1>
-	Welcome to your contact manager!
     </div>
+	<h3>Welcome to your contact manager!</h3>
+    <div class="centered-block">
+	Add your contacts here
+    </div>
+    <div>
+	<br><label for="contactName">Contact Name*:</label>
+	<input type="text" id="contactName"><br>
+	<br><label for="contactEmail">Contact Email*:</label>
+	<input type="email" id="contactEmail"><br>
+	<br><label for="contactPhoneNum">Contact Phone Number:</label>
+	<input type="number" id="contactPhoneNum"><br>
+	<br><button onclick="addContact()">Add Contact</button><br>
+    </div>
+     <div class="centered-block">
+	Search your contacts here
+    </div>
+    <div>
+	<br><label for="searchContact">Search Name*:</label>
+	<input type="text" id="searchContact"><br>
+	<br><button onclick="searchContact()">Search</button><br> 
+	<br><button onclick="logout()">Log out</button><br>
+    </div>
+
 </body>
 </html>
