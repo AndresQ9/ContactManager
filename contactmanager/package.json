@@ -1,6 +1,6 @@
 {
   "name": "contactmanager",
-  "homepage": "http://www.jordanshouse.site/",
+  "homepage": "http://www.jordanshouse.site/ContactManager/contactmanager/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
