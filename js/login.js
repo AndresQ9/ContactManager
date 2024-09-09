@@ -26,6 +26,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             })// Parse the JSON response from the server
         .then(json => {
             console.log(json.id);
+            console.log(json.id);
             if (json.error === "") {
                 userId = json.id;
                 saveCookie();
