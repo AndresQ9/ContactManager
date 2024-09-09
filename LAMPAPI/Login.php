@@ -7,7 +7,7 @@
 	$firstName = "";
 	$lastName = "";
 
-    returnWithError("No Records Found");
+    echo 'look it works';
 
     return;
 
