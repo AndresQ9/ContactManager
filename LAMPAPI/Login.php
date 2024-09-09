@@ -3,8 +3,6 @@
 
 	$inData = getRequestInfo();
 
-    return $inData;
-
 	$id = 0;
 	$firstName = "";
 	$lastName = "";
