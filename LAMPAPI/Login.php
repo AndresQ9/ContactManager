@@ -23,8 +23,6 @@
 		echo $inData["userName"];
             	    return;
 
-        echo 'hi';
-
 		if( $row = $result->fetch_assoc()  )
 		{
 			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
