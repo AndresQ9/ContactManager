@@ -12,17 +12,19 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     };
 
     // Send the login data using fetch
-    await fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/Login.php', {
+    fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/Login.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(loginData)  // Convert the login data to JSON format
     })
-        .then(async response => {
-            json = JSON.parse(await response.text())
-            console.log(json)
-            })  // Parse the JSON response from the server
+        .then(response => {
+            return response.json()
+            })// Parse the JSON response from the server
+        .then(json => {
+            console.log(json);
+        })// Parse the JSON response from the server
         .then(data => {
             console.log(data);
             if (data.success) {
