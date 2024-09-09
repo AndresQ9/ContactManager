@@ -23,7 +23,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             return response.json()
             })// Parse the JSON response from the server
         .then(json => {
-            console.log(json);
+            alert('you are user: '+json.id);
         })// Parse the JSON response from the server
         .then(data => {
             console.log(data);
