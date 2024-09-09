@@ -3,7 +3,6 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    console.log(email, password);
 
     // Create an object containing the form data
     const loginData = {
@@ -14,10 +13,10 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     // Send the login data using fetch
     await fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/Login.php', {
         method: 'POST',
-        headers: {
+        /*headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(loginData)  // Convert the login data to JSON format
+        },*/
+        body: new formdata().append(email, password)  // Convert the login data to JSON format
     })
         .then(response => {
             console.log(response)
