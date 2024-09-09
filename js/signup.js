@@ -17,5 +17,5 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
 
   alert("Signup successful!");
 
-  window.location.href = "/login";
+  window.location.href = "../html/login.html";
 });

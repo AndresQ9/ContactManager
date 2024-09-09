@@ -179,6 +179,10 @@ body {
     background-color: #0056b3;
 }
 
+.modal-content h2 {
+    color: #007BFF;
+}
+
 .delete-button {
     position: absolute;
     top: 10px;
