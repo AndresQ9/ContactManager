@@ -1,0 +1,196 @@
+body {
+    font-family: 'San Francisco', 'Poppins', sans-serif; 
+    background-color: #F7F7F7; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #333; 
+}
+
+
+.home-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1600px; 
+    margin: 0 auto; /* Center the content */
+}
+
+.search-bar {
+    padding: 15px;
+    width: 80%;
+    max-width: 600px; 
+    margin-bottom: 20px;
+    border-radius: 20px; 
+    border: none;
+    background-color: #ffffff; 
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    font-size: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.search-bar:hover {
+    transform: scale(1.02); 
+}
+
+.create-contact-button {
+    padding: 12px 20px;
+    background-color: #007AFF; 
+    width: 80%;
+    max-width: 280px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    font-size: 16px;
+    border-radius: 50px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.create-contact-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+
+.contact-grid {
+    display: grid;
+    flex-direction: column;
+    width: 1800px;
+    justify-items: center;
+}
+
+
+.contact-card {
+    position: relative;
+    background-color: #ffffff;
+    padding: 20px 30px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft shadow */
+    text-align: left;
+    margin-bottom: 10px; /* Space between cards */
+    display: flex; /* Align content horizontally */
+    align-items: center;
+    justify-content: space-between; 
+    border-bottom: 1px solid #eaeaea; 
+    border-left: 6px solid #007BFF;
+}
+
+.contact-card:hover {
+    transform: scale(1.02); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Contact card heading */
+.contact-card h3 {
+    margin-top: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #007BFF;
+}
+
+/* Contact card paragraph */
+.contact-card p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Bold for labels like Nickname, Phone, etc. */
+.contact-card p strong {
+    font-weight: 600;
+    color: #333; /* Use a slightly darker color for emphasis */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fff;
+    padding: 40px;
+    margin-top: 160px;   
+    margin-left: 580px;
+    border: 3px solid #888;
+    width: 700px;
+    border-radius: 10px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+  
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+  
+.modal-content form label {
+    font-size: 1.1rem;
+}
+
+.modal-content form input {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.modal-content form button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.modal-content form button:hover {
+    background-color: #0056b3;
+}
+
+.delete-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    color: red;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    color: darkred;
+}
