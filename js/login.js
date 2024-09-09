@@ -4,6 +4,8 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
+    let userId = 0;
+
     console.log(username, password);
     // Create an object containing the form data
     const loginData = {
@@ -25,7 +27,8 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         .then(json => {
             console.log(json.id);
             if (json.error === "") {
-                localStorage.setItem('userId', ''+json.id);
+                userId = json.id;
+                saveCookie();
                 window.location.href = 'home.html';  // Redirect to your home page
             } else {
                 document.getElementById('loginError').textContent = "Incorrect Username or Password";
