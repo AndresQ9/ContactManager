@@ -3,6 +3,9 @@
 
 	$inData = getRequestInfo();
 
+	header('Content-type: application/json');
+    		echo $inData;
+
 	return;
 
 	$id = 0;
