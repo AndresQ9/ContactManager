@@ -3,8 +3,8 @@
 
 	$inData = getRequestInfo();
 
-	header('Content-type: application/json');
-    		echo $inData;
+	$retValue = '{"id":' . 1 . ',"firstName":"' . 'jordan' . '","lastName":"' . "sanchez" . '","error":""}';
+    		sendResultInfoAsJson( $retValue );
 
 	return;
 
