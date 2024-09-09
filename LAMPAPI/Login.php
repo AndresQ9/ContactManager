@@ -3,7 +3,6 @@
 
 	$inData = getRequestInfo();
 
-	echo 'worrynot';
 	return;
 
 	$id = 0;
@@ -24,7 +23,7 @@
 
 		if( $row = $result->fetch_assoc()  )
 		{
-			returnWithasdawInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
 		}
 		else
 		{
