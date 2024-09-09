@@ -7,8 +7,10 @@
 	$firstName = "";
 	$lastName = "";
 
+    returnWithError("No Records Found");
+
 	$conn = new mysqli("localhost", "root", ":dQD:QR4/HMX", "contactmanager"); //need to change user and password when deployed
-	if( true)//$conn->connect_error )
+	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
 	}
