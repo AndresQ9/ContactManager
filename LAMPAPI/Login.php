@@ -1,9 +1,10 @@
 
 <?php
 
+    $json = file_get_contents("php://input"); // json string
+    echo $json;
+
 	$inData = getRequestInfo();
-	echo $inData;
-        return;
 
 	$id = 0;
 	$firstName = "";

@@ -10,15 +10,13 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         password: password
     };
 
-    formData = new FormData();
-    formData().append(email, password)
     // Send the login data using fetch
     await fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/Login.php', {
         method: 'POST',
-        /*headers: {
+        headers: {
             'Content-Type': 'application/json'
-        },*/
-        body: formData()  // Convert the login data to JSON format
+        },
+        body: JSON.stringify(loginData)  // Convert the login data to JSON format
     })
         .then(response => {
             console.log(response)
