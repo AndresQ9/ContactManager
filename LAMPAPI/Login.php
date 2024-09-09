@@ -16,10 +16,10 @@
 	}
 	else
 	{
+	echo $inData["userName"];
+                        	    return;
 		$stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=? AND Password =?");
 		$stmt->bind_param("ss", $inData["userName"], $inData["password"]);
-		echo $inData["userName"];
-                    	    return;
 		$stmt->execute();
 		$result = $stmt->get_result();
 
