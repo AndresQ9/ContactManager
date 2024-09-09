@@ -1,10 +1,10 @@
 
 <?php
 
-    $json = file_get_contents("php://input"); // json string
-    echo $json;
+	$inData = file_get_contents("php://input");
 
-	$inData = getRequestInfo();
+	echo $inData["password"];
+	return;
 
 	$id = 0;
 	$firstName = "";
