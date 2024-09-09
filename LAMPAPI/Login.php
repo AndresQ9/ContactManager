@@ -7,11 +7,11 @@
 	$firstName = "";
 	$lastName = "";
 
-    echo 'look it works';
 
-    return;
 
 	$conn = new mysqli("localhost", "root", ":dQD:QR4/HMX", "contactmanager"); //need to change user and password when deployed
+	echo '1';
+    return;
 	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
