@@ -1,10 +1,9 @@
+let userId = 0;
 document.getElementById('loginForm').addEventListener('submit', async function (event) {
     event.preventDefault();  // Prevent the form from submitting the default way
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-
-    let userId = 0;
 
     console.log(username, password);
     // Create an object containing the form data
