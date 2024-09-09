@@ -19,8 +19,8 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         },
         body: JSON.stringify(loginData)  // Convert the login data to JSON format
     })
-        .then(response => {
-            json = JSON.parse(response.text())
+        .then(async response => {
+            json = JSON.parse(await response.text())
             console.log(json)
             })  // Parse the JSON response from the server
         .then(data => {
