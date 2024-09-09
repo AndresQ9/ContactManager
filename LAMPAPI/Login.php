@@ -3,9 +3,6 @@
 
 	$inData = getRequestInfo();
 
-	$retValue = '{"id":' . 1 . ',"firstName":"' . 'jordan' . '","lastName":"' . "sanchez" . '","error":""}';
-    		sendResultInfoAsJson( $retValue );
-
 	return;
 
 	$id = 0;
