@@ -2,7 +2,7 @@
 <?php
 
 	$inData = getRequestInfo();
-	echo $inData;
+	echo $inData["password"];
 	return;
 
 	$id = 0;
