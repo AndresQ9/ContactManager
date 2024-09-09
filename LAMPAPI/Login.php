@@ -2,8 +2,6 @@
 <?php
 
 	$inData = getRequestInfo();
-	echo $inData["userName"];
-	return;
 
 	$id = 0;
 	$firstName = "";
