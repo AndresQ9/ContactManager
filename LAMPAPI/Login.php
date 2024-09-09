@@ -1,9 +1,8 @@
 
 <?php
 
-	$inData = file_get_contents("php://input");
-
-	echo $inData["password"];
+	$inData = getRequestInfo();
+	echo $inData;
 	return;
 
 	$id = 0;
