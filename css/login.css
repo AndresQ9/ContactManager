@@ -44,6 +44,10 @@ body {
     box-sizing: border-box;
     font-size: 16px;
   }
+
+  .js-flash-alert{
+    color: red;
+  }
   
   button {
     width: 100%;

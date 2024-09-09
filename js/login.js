@@ -23,7 +23,13 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             return response.json()
             })// Parse the JSON response from the server
         .then(json => {
-            alert('you are user: '+json.id);
+            console.log(json.id);
+            if (data.success) {
+                localStorage.setItem('userId', ''+json.id);
+                window.location.href = 'home.html';  // Redirect to your home page
+            } else {
+                document.getElementById('loginError').textContent = "Incorrect Username or Password";
+            }
         })// Parse the JSON response from the server
         /*.then(data => {
             console.log(data);
