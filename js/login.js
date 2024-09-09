@@ -11,7 +11,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
     };
   
     // Send the login data using fetch
-    fetch('http://jordanshouse.site/LAMPAPI/Login.php', {
+    fetch('http://jordanshouse.site/ContactManager/LAMPAPI/Login.php', {
       method: 'POST',  
       headers: {
         'Content-Type': 'application/json'  
