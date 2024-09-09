@@ -25,7 +25,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         .then(json => {
             alert('you are user: '+json.id);
         })// Parse the JSON response from the server
-        .then(data => {
+        /*.then(data => {
             console.log(data);
             if (data.success) {
                 localStorage.setItem('isLoggedIn', 'true');
@@ -33,7 +33,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             } else {
                 alert('Login failed: ' + data.message);
             }
-        })
+        })*/
         .catch(error => {
             console.error('Error:', error);
             alert('An error occurred while trying to log in.');
