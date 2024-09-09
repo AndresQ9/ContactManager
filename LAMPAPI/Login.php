@@ -10,10 +10,10 @@
 
 
 	$conn = new mysqli("localhost", "root", ":dQD:QR4/HMX", "contactmanager"); //need to change user and password when deployed
-	echo '1';
-    return;
 	if( $conn->connect_error )
 	{
+	    echo 'hi1';
+           return;
 		returnWithError( $conn->connect_error );
 	}
 	else
