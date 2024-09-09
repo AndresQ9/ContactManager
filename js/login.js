@@ -19,7 +19,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         body: JSON.stringify(loginData)  // Convert the login data to JSON format
     })
         .then(response => {response.json()
-        console.log(response.json())
+        console.log(response)
         })  // Parse the JSON response from the server
         .then(data => {
             if (data.success) {
