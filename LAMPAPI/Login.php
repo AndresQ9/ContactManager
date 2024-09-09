@@ -16,16 +16,15 @@
 	}
 	else
 	{
-	echo $inData["password"];
-    return;
-		$stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=? AND Password =?");
+		$stmt = $conn->prepare("SELECT userId, FROM users WHERE Login=? AND Password =?");
+
 		$stmt->bind_param("ss", $inData["userName"], $inData["password"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
 		if( $row = $result->fetch_assoc()  )
 		{
-			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+			returnWithInfo( $row['userId'] );
 		}
 		else
 		{
