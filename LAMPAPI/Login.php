@@ -2,6 +2,8 @@
 <?php
 
 	$inData = getRequestInfo();
+	echo $inData;
+        return;
 
 	$id = 0;
 	$firstName = "";
@@ -15,8 +17,6 @@
 	}
 	else
 	{
-	    echo 'hi1';
-        return;
 		$stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=? AND Password =?");
 		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
 		$stmt->execute();
