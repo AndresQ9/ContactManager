@@ -18,10 +18,9 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         },
         body: JSON.stringify(loginData)  // Convert the login data to JSON format
     })
-        .then(response => {response.json()
-        console.log(response)
-        })  // Parse the JSON response from the server
+        .then(response => response.json())  // Parse the JSON response from the server
         .then(data => {
+            console.log(data);
             if (data.success) {
                 localStorage.setItem('isLoggedIn', 'true');
                 window.location.href = 'home.html';  // Redirect to your home page
