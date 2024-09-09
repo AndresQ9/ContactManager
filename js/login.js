@@ -24,7 +24,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             })// Parse the JSON response from the server
         .then(json => {
             console.log(json.id);
-            if (data.success) {
+            if (json.error === "") {
                 localStorage.setItem('userId', ''+json.id);
                 window.location.href = 'home.html';  // Redirect to your home page
             } else {
