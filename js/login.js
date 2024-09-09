@@ -4,6 +4,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
+    console.log(email, password);
     // Create an object containing the form data
     const loginData = {
         userName: email,
