@@ -1,65 +1,58 @@
+
 <?php
 
-session_start();
+	$inData = getRequestInfo();
 
-if(isset($_POST["username"]) && isset($_POST["password"])) {
+	$id = 0;
+	$firstName = "";
+	$lastName = "";
 
-    function validate($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
+	$conn = new mysqli("localhost", "root", ":dQD:QR4/HMX", "contactmanager"); //need to change user and password when deployed
+	if( $conn->connect_error )
+	{
+		returnWithError( $conn->connect_error );
+	}
+	else
+	{
+		$stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=? AND Password =?");
+		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
+		$stmt->execute();
+		$result = $stmt->get_result();
 
-}
+		if( $row = $result->fetch_assoc()  )
+		{
+			returnWithasdawInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+		}
+		else
+		{
+			returnWithError("No Records Found");
+		}
 
-$username = validate($_POST['username']);
-$password = validate($_POST['password']);
+		$stmt->close();
+		$conn->close();
+	}
+	
+	function getRequestInfo()
+	{
+		return json_decode(file_get_contents('php://input'), true);
+	}
 
-if(empty($username)) {
-
-    header ("Location: index.php?error=Username is required");
-    exit();
-
-}
-else if(empty($password)) {
-
-    header ("Location: index.php?error=Password is required");
-    exit();
-
-}
-
-$sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-
-$result = mysqli_query($conn, $sql);
-
-if(mysqli_num_rows($result) === 1) {
-
-    $row = mysqli_fetch_assoc($result);
-
-    if($row["username"] === $username && $row["password"] === $password) {
-
-        echo"Logged in";
-        $_SESSION['username'] = $row['username'];
-        $_SESSION['name'] = $row['name'];
-        $_SESSION['id'] = $row['id'];
-        header("Location: home.php");
-        exit();
-
-    }
-    else {
-
-        header("Location: index.php?error=Incorrect Username or Password");
-        exit();
-
-    }
-
-}
-else {
-
-    header("Location: index.php");
-    exit();
-
-}
+	function sendResultInfoAsJson( $obj )
+	{
+		header('Content-type: application/json');
+		echo $obj;
+	}
+	
+	function returnWithError( $err )
+	{
+		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+	
+	function returnWithInfo( $firstName, $lastName, $id )
+	{
+		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		sendResultInfoAsJson( $retValue );
+	}
 
 ?>
