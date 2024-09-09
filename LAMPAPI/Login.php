@@ -3,6 +3,9 @@
 
 	$inData = getRequestInfo();
 
+	echo $inData;
+	return;
+
 	$id = 0;
 	$firstName = "";
 	$lastName = "";
@@ -10,12 +13,10 @@
 	$conn = new mysqli("localhost", "root", ":dQD:QR4/HMX", "contactmanager"); //need to change user and password when deployed
 	if( $conn->connect_error )
 	{
-	    return 'hello';
 		returnWithError( $conn->connect_error );
 	}
 	else
 	{
-	    return 'hello2';
 		$stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=? AND Password =?");
 		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
 		$stmt->execute();
