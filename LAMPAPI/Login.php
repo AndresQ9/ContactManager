@@ -21,6 +21,8 @@
 		$stmt->execute();
 		$result = $stmt->get_result();
 
+        echo $result;
+
 		if( $row = $result->fetch_assoc()  )
 		{
 			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
