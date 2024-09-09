@@ -29,7 +29,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             if (json.error === "") {
                 userId = json.id;
                 saveCookie();
-                window.location.href = 'home.html';  // Redirect to your home page
+                //window.location.href = 'home.html';  // Redirect to your home page
             } else {
                 document.getElementById('loginError').textContent = "Incorrect Username or Password";
             }
