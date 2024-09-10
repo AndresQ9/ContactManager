@@ -32,9 +32,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
       .then(json => {
         console.log(json.id);
         if (json.error === "") {
-          userId = json.id;
-          saveCookie();
-          window.location.href = 'home.html';  // Redirect to your home page
+          window.location.href = 'login.html';  // Redirect to your home page
         } else {
           document.getElementById('serverError').textContent = json.error;
         }
