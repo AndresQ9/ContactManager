@@ -17,8 +17,8 @@
 	{
 
 		$stmt = $conn->prepare("SELECT userName FROM users WHERE userName = ?");
-
-
+		echo 'hi';
+		return;
 		$stmt->bind_param("s", $inData["userName"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
