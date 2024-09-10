@@ -30,6 +30,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         return response.json()
       })// Parse the JSON response from the server
       .then(json => {
+        console.log(json.text);
         if (json.error === "") {
           userId = json.id;
           saveCookie();
