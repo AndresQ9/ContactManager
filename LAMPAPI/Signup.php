@@ -22,6 +22,8 @@
 		$stmt->execute();
 		$result = $stmt->get_result();
 
+		echo 'hi';
+		return;
 
 		if( $row = $result->fetch_assoc()  )
 		{
