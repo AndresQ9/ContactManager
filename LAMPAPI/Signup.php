@@ -16,10 +16,13 @@
 	else
 	{
 
+        echo 'hi';
+        return;
+
 		$stmt = $conn->prepare("IF NOT EXISTS(SELECT userName from users where userName=?) BEGIN INSERT INTO users (userName, password) Values (?, ?) END");
 
         echo 'hi';
-        		return;
+        return;
 
 
 		$stmt->bind_param("sss", $inData["userName"], $inData["userName"], $inData["password"]);
