@@ -17,9 +17,6 @@
 	}
 	else
 	{
-
-        echo 'hi';
-        return;
 		$stmt = $conn->prepare("SELECT userName FROM users WHERE userName = ?");
 
 		$stmt->bind_param("s", $inData["userName"]);
