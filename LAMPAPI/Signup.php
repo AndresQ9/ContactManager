@@ -28,7 +28,6 @@
             $stmt->bind_param("ss", $inData["userName"], $inData["password"]);
             $stmt->execute();
             $result = $stmt->get_result();
-            $result = $stmt->get_result();
             if( $row = $result->fetch_assoc()  )
             		{
             			returnWithInfo( $row['userId'] );
