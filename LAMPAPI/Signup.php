@@ -17,6 +17,7 @@
 	{
 
         echo $row;
+        return;
 
 		$stmt = $conn->prepare("IF NOT EXISTS(SELECT userName from users where userName=?) BEGIN INSERT INTO users (userName, password) Values (?, ?) END");
 
