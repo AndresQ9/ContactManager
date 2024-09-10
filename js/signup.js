@@ -50,6 +50,6 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
       })*/
       .catch(error => {
         console.error('Error:', error);
-        document.getElementById('serverError').textContent = 'An error occurred while trying to log in.';
+        document.getElementById('serverError').textContent = 'An error occurred while trying to register, try again.';
       });
 });
