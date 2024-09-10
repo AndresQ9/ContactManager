@@ -36,7 +36,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
           saveCookie();
           window.location.href = 'home.html';  // Redirect to your home page
         } else {
-          document.getElementById('serverError').textContent = "Username is taken";
+          document.getElementById('serverError').textContent = json.error;
         }
       })// Parse the JSON response from the server
       /*.then(data => {
