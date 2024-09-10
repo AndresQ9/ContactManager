@@ -16,23 +16,23 @@
 	else
 	{
 
-        echo 'hi';
-        return;
-
-		$stmt = $conn->prepare("IF NOT EXISTS(SELECT userName from users where userName=?) BEGIN INSERT INTO users (userName, password) Values (?, ?) END");
-
-        echo 'hi';
-        return;
+		$stmt = $conn->prepare("SELECT userName FROM users WHERE userName = ?");
 
 
-		$stmt->bind_param("sss", $inData["userName"], $inData["userName"], $inData["password"]);
+		$stmt->bind_param("s", $inData["userName"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
-
-		if( $row = $result->fetch_assoc()  )
-		{
-			returnWithInfo( $row['userId'] );
+		if($result ->num_rows ==0){
+            $stmt = $conn->prepare("INSERT INTO users (userName, password) VALUES (?, ?)");
+            $stmt->bind_param("ss", $inData["userName"], $inData["password"]);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if( $row = $result->fetch_assoc()  )
+            		{
+            			returnWithInfo( $row['userId'] );
+            		}
+            else returnWithError("error occurred")
 		}
 		else
 		{
