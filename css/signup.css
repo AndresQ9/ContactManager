@@ -22,7 +22,11 @@ body {
     margin-bottom: 20px;
     color: #007bff;
   }
-  
+
+.js-flash-alert{
+  color: red;
+}
+
   .input-group {
     margin-bottom: 20px;
     text-align: left;

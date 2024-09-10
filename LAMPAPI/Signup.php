@@ -16,13 +16,14 @@
 	else
 	{
 
+        echo $row;
+
 		$stmt = $conn->prepare("IF NOT EXISTS(SELECT userName from users where userName=?) BEGIN INSERT INTO users (userName, password) Values (?, ?) END");
 
 		$stmt->bind_param("sss", $inData["userName"], $inData["userName"], $inData["password"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
-        echo $row;
 
 		if( $row = $result->fetch_assoc()  )
 		{
