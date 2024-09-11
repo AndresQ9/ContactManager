@@ -16,9 +16,9 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
       headers: {
         'Content-Type': 'application/json'  
       },
-      body: JSON.stringify(loginData)  // Convert the login data to JSON format
+      body: JSON.stringify(loginData)  
     })
-    .then(response => response.json())  // Parse the JSON response from the server
+    .then(response => response.json()) 
     .then(data => {
       if (data.success) {
         localStorage.setItem('isLoggedIn', 'true');
