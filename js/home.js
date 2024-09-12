@@ -1,5 +1,13 @@
 let editingContactId = null;
-let contacts = []
+let contacts = [];
+let searchQuery = "";
+let userId = document.cookie.split("; ").find((row) => row.startsWith("userId="))?.split("=")[1];
+let page = 1;
+let loadData = {
+    userId: userId,
+    search: searchQuery,
+    page: 1
+}
 /*const contacts = [
     { id: 1, name: 'John Doe', nickname: 'Johnny', phone: '123-456-7890', email: 'john@example.com' },
     { id: 2, name: 'Jane Smith', nickname: 'Janey', phone: '987-654-3210', email: 'jane@example.com' },
@@ -12,37 +20,7 @@ let contacts = []
     { id: 5, name: 'Bob Jones', nickname: 'Bobby', phone: '555-987-6543', email: 'bob@example.com' },
 ];*/
 
-window.addEventListener('load', function() {
-
-    console.log("here");
-    fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContact.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(signupData)  // Convert the login data to JSON format
-    })
-        .then(response => {
-            console.log("here");
-            return response.json()
-        })// Parse the JSON response from the server
-        .then(json => {
-            console.log(json);
-            contacts = json;
-            if (json.error === "") {
-                window.location.href = 'login.html';  // Redirect to your home page
-            } else {
-                document.getElementById('serverError').textContent = json.error;
-            }
-        })// Parse the JSON response from the server
-        .catch(error => {
-            console.error('Error:', error);
-            document.getElementById('serverError').textContent = 'An error occurred while trying to register, try again.';
-        });
-
-    renderContacts(contacts);
-});
-
+window.onload(function() {loadContacts()});
 
 
 // Function to render contact cards
@@ -163,12 +141,38 @@ function submitContact() {
 }
 // Function to filter contacts based on search query
 function filterContacts() {
-    const searchQuery = document.getElementById('searchBar').value.toLowerCase();
-    const filteredContacts = contacts.filter(contact =>
-        contact.name.toLowerCase().includes(searchQuery) ||
-        contact.nickname.toLowerCase().includes(searchQuery) ||
-        contact.phone.includes(searchQuery) ||
-        contact.email.toLowerCase().includes(searchQuery)
-    );
+    searchQuery = document.getElementById('searchBar').value.toLowerCase();
+    loadContacts();
     renderContacts(filteredContacts); 
+}
+
+function loadContacts() {
+
+    console.log("here");
+    fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContact.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(loadData)  // Convert the login data to JSON format
+    })
+        .then(response => {
+            console.log("here");
+            return response.json()
+        })// Parse the JSON response from the server
+        .then(json => {
+            console.log(json);
+            contacts = json;
+            if (json.error === "") {
+                window.location.href = 'login.html';  // Redirect to your home page
+            } else {
+                document.getElementById('serverError').textContent = json.error;
+            }
+        })// Parse the JSON response from the server
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('serverError').textContent = 'An error occurred while trying to register, try again.';
+        });
+
+    renderContacts(contacts);
 }
