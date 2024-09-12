@@ -22,12 +22,11 @@
          }
         //no search so load like normal
 		else{
-		echo "hello";
-		return;
             $stmt = $conn->prepare(
             "SELECT * FROM contacts WHERE userId = ? ORDER BY firstname Limit ? OFFSET ?"
             );
-            $stmt->bind_param("iii", $userId, 10, $offset);
+            $limit = 10;
+            $stmt->bind_param("iii", $userId, $limit, $offset);
             $stmt->execute();
             $result = $stmt->get_result();
 
