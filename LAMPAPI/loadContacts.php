@@ -71,7 +71,7 @@
 
 	function returnWithInfo( $result )
 	{
-		sendResultInfoAsJson( $result );
+		echo $result;
 	}
 
 ?>
