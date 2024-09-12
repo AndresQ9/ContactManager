@@ -5,7 +5,7 @@
 	$offset = 10*($page - 1);
 	$searchCount = 0;
 	$searchResults = "[";
-	echo $inData["search"];
+	echo "hello";
                     return;
 
 	$conn = new mysqli("localhost", "root", ":dQD:QR4/HMX", "contactmanager"); //need to change user and password when deployed
