@@ -20,7 +20,7 @@ let loadData = {
     { id: 5, name: 'Bob Jones', nickname: 'Bobby', phone: '555-987-6543', email: 'bob@example.com' },
 ];*/
 
-window.onload(function() {loadContacts()});
+window.onload = function() {loadContacts()};
 
 
 // Function to render contact cards
