@@ -39,7 +39,7 @@
             			$searchCount++;
             			$searchResults .= '{"firstName:' . $row["firstName"] . '", lastName:"' . $row["lastName"] . '", phone: "' . $row["phone"] . '", email: "' . $row["email"] . '"}' ;
             		}
-                $searchResults .= '], error: ""} ';
+                $searchResults .= '], error: ""}';
 
             if( $searchCount == 0 )
                     {
