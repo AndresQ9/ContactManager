@@ -38,6 +38,7 @@ fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContact.php', {
 
 // Function to render contact cards
 function renderContacts(filteredContacts) {
+    console.log("here");
     const contactGrid = document.getElementById('contactGrid');
     contactGrid.innerHTML = ''; 
 
