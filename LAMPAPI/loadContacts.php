@@ -4,7 +4,7 @@
 	$page = intval($inData["page"]);
 	$offset = 10*($page - 1);
 	$searchCount = 0;
-	$searchResults = "{ contacts: [";
+	$searchResults = '{ "contacts": [';
 
 	$conn = new mysqli("localhost", "root", ":dQD:QR4/HMX", "contactmanager"); //need to change user and password when deployed
 	if( $conn->connect_error ){
