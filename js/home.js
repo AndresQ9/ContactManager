@@ -147,8 +147,6 @@ function filterContacts() {
 }
 
 function loadContacts() {
-
-    console.log("here");
     fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContact.php', {
         method: 'POST',
         headers: {
@@ -157,7 +155,6 @@ function loadContacts() {
         body: JSON.stringify(loadData)  // Convert the login data to JSON format
     })
         .then(response => {
-            console.log("here");
             return response.json()
         })// Parse the JSON response from the server
         .then(json => {
