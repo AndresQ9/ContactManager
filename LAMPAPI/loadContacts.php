@@ -1,7 +1,4 @@
 <?php
-
-    echo "hello";
-    	    return;
 	$inData = getRequestInfo();
 	$userId = intval($inData["userId"]);
 	$page = intval($inData["page"]);
