@@ -69,10 +69,9 @@
 		sendResultInfoAsJson( $retValue );
 	}
 
-	function returnWithInfo( $id )
+	function returnWithInfo( $result )
 	{
-		$retValue = '{"id":' . $id . ',"error":""}';
-		sendResultInfoAsJson( $retValue );
+		sendResultInfoAsJson( $result );
 	}
 
 ?>
