@@ -14,6 +14,7 @@ let contacts = []
 
 window.onload = function() {
 
+    console.log("here");
     fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContact.php', {
         method: 'POST',
         headers: {
