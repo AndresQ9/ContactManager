@@ -12,7 +12,7 @@
 	}
 	else
 	{
-	echo "test";
+	echo "test2";
         return;
 	    //if there's a search
 	    if($inData["search"]!=""){
