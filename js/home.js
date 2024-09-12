@@ -20,6 +20,7 @@ fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContact.php', {
     body: JSON.stringify(signupData)  // Convert the login data to JSON format
 })
     .then(response => {
+        console.log("here");
         return response.json()
     })// Parse the JSON response from the server
     .then(json => {
@@ -38,7 +39,6 @@ fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContact.php', {
 
 // Function to render contact cards
 function renderContacts(filteredContacts) {
-    console.log("here");
     const contactGrid = document.getElementById('contactGrid');
     contactGrid.innerHTML = ''; 
 
