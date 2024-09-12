@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <link rel="stylesheet" href="../css/signup.css">
+</head>
+<body>
+  <div class="signup-container">
+    <form id="signupForm">
+      <h2>Sign Up</h2>
+      <div class="input-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+      </div>
+      <div role="alert" class="js-flash-alert" id="passwordMatchError"></div>
+      <div role="alert" class="js-flash-alert" id="serverError"></div>
+      <button type="submit">Sign Up</button>
+      <p class="login-text">
+        Already have an account? <a href="login.html">Login here</a>
+      </p>
+    </form>
+  </div>
+
+  <script src="../js/signup.js"></script>
+</body>
+</html>
