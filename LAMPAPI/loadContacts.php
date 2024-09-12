@@ -12,16 +12,18 @@
 	}
 	else
 	{
-	echo "test2";
-        return;
 	    //if there's a search
 	    if($inData["search"]!=""){
+	    echo "test3";
+                return;
             $stmt = $conn->prepare("SELECT * FROM contacts WHERE userId = ? AND (firstname LIKE ? OR lastname LIKE ? OR email LIKE ? OR phone LIKE ?)");
 
             $stmt->bind_param("s", $inData["search"]);
             $stmt->execute();
             $result = $stmt->get_result();
          }
+        echo "test4";
+             return;
         //no search so load like normal
 		else{
             $stmt = $conn->prepare(
