@@ -40,7 +40,7 @@ function renderContacts(filteredContacts) {
         }
 
         const contactName = document.createElement('h3');
-        contactName.textContent = contact.name;
+        contactName.textContent = contact.firstName;
 
         const contactNickname = document.createElement('p');
         contactNickname.innerHTML = `<strong>Nickname:</strong> ${contact.nickname}`;
@@ -155,7 +155,7 @@ function loadContacts() {
         body: JSON.stringify(loadData)  // Convert the login data to JSON format
     })
         .then(response => {
-            console.log(response.text());
+            //console.log(response.text());
             return response.json()
         })// Parse the JSON response from the server
         .then(json => {
