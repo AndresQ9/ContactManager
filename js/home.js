@@ -160,7 +160,7 @@ function loadContacts() {
         })// Parse the JSON response from the server
         .then(json => {
             console.log(json);
-            contacts = json;
+            contacts = json.contacts;
             if (json.error === "") {
                 window.location.href = 'login.html';  // Redirect to your home page
             } else {
