@@ -147,7 +147,7 @@ function filterContacts() {
 }
 
 function loadContacts() {
-    fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContact.php', {
+    fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContacts.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
