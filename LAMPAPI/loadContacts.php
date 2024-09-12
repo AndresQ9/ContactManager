@@ -13,7 +13,7 @@
 	else
 	{
 	    //if there's a search
-	    if($inData["search"]!=""){
+	    if( $inData["search"] != ""){
 	    echo "test3";
                 return;
             $stmt = $conn->prepare("SELECT * FROM contacts WHERE userId = ? AND (firstname LIKE ? OR lastname LIKE ? OR email LIKE ? OR phone LIKE ?)");
