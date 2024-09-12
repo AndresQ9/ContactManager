@@ -1,6 +1,6 @@
 let editingContactId = null;
-
-const contacts = [
+let contacts = []
+/*const contacts = [
     { id: 1, name: 'John Doe', nickname: 'Johnny', phone: '123-456-7890', email: 'john@example.com' },
     { id: 2, name: 'Jane Smith', nickname: 'Janey', phone: '987-654-3210', email: 'jane@example.com' },
     { id: 3, name: 'Mike Johnson', nickname: 'Mikey', phone: '555-555-5555', email: 'mike@example.com' },
@@ -10,7 +10,31 @@ const contacts = [
     { id: 5, name: 'Bob Jones', nickname: 'Bobby', phone: '555-987-6543', email: 'bob@example.com' },
     { id: 5, name: 'Bob Jones', nickname: 'Bobby', phone: '555-987-6543', email: 'bob@example.com' },
     { id: 5, name: 'Bob Jones', nickname: 'Bobby', phone: '555-987-6543', email: 'bob@example.com' },
-];
+];*/
+
+fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContact.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(signupData)  // Convert the login data to JSON format
+})
+    .then(response => {
+        return response.json()
+    })// Parse the JSON response from the server
+    .then(json => {
+        console.log(json);
+        contacts = json;
+        if (json.error === "") {
+            window.location.href = 'login.html';  // Redirect to your home page
+        } else {
+            document.getElementById('serverError').textContent = json.error;
+        }
+    })// Parse the JSON response from the server
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('serverError').textContent = 'An error occurred while trying to register, try again.';
+    });
 
 // Function to render contact cards
 function renderContacts(filteredContacts) {

@@ -37,15 +37,6 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
           document.getElementById('serverError').textContent = json.error;
         }
       })// Parse the JSON response from the server
-      /*.then(data => {
-          console.log(data);
-          if (data.success) {
-              localStorage.setItem('isLoggedIn', 'true');
-              window.location.href = 'home.html';  // Redirect to your home page
-          } else {
-              alert('Login failed: ' + data.message);
-          }
-      })*/
       .catch(error => {
         console.error('Error:', error);
         document.getElementById('serverError').textContent = 'An error occurred while trying to register, try again.';

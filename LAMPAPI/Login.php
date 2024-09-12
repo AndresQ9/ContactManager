@@ -3,11 +3,6 @@
 
 	$inData = getRequestInfo();
 
-	$id = 0;
-	$firstName = "";
-	$lastName = "";
-
-
 	$conn = new mysqli("localhost", "root", ":dQD:QR4/HMX", "contactmanager"); //need to change user and password when deployed
 	if( $conn->connect_error )
 	{
