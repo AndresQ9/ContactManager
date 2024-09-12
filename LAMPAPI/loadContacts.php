@@ -5,7 +5,7 @@
 	$inData = getRequestInfo();
 	$userId = intval($inData["userId"]);
 	$page = intval($inData["page"]);
-	$offset = 10($page - 1);
+	$offset = 10*($page - 1);
 	$searchCount = 0;
 	$searchResults = "[";
 
