@@ -46,24 +46,6 @@ const Signup = () => {
           />
         </div>
         <div className="input-group">
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="input-group">
-          <label>Phone Number:</label>
-          <input
-            type="tel"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            required
-          />
-        </div>
-        <div className="input-group">
           <label>Password:</label>
           <input
             type="password"
