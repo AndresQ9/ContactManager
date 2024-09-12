@@ -6,14 +6,14 @@
 	$searchCount = 0;
 	$searchResults = "[";
 
-    echo "test";
-    return;
 	$conn = new mysqli("localhost", "root", ":dQD:QR4/HMX", "contactmanager"); //need to change user and password when deployed
 	if( $conn->connect_error ){
 		returnWithError( $conn->connect_error );
 	}
 	else
 	{
+	echo "test";
+        return;
 	    //if there's a search
 	    if($inData["search"]!=""){
             $stmt = $conn->prepare("SELECT * FROM contacts WHERE userId = ? AND (firstname LIKE ? OR lastname LIKE ? OR email LIKE ? OR phone LIKE ?)");
