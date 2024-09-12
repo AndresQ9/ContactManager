@@ -63,7 +63,7 @@ function deleteContact(contactId) {
     const contactIndex = contacts.findIndex(contact => contact.id === contactId);
 
     if (contactIndex !== -1) {
-        contacts.splice(contactIndex, 1); // Remove the contact from the array
+        contacts.splice(contactIndex, 1);
         renderContacts(contacts); 
     }
 }
@@ -82,14 +82,14 @@ function closeModal() {
 }
 
 function openEditModal(contact) {
-    editingContactId = contact.id;  // Set the ID of the contact being edited
+    editingContactId = contact.id;
     document.getElementById('modalTitle').textContent = 'Edit Contact';
     document.getElementById('contactId').value = contact.id;
     document.getElementById('name').value = contact.name;
     document.getElementById('nickname').value = contact.nickname;
     document.getElementById('phone').value = contact.phone;
     document.getElementById('email').value = contact.email;
-    document.getElementById('contactModal').style.display = 'block'; // Show modal
+    document.getElementById('contactModal').style.display = 'block';
 }
 
 // Function to submit the contact from the modal form
@@ -122,8 +122,8 @@ function submitContact() {
             contacts.push(newContact); // Add new contact to the array
         }
 
-        renderContacts(contacts); // Re-render the contact list
-        closeModal(); // Close the modal after submission
+        renderContacts(contacts);
+        closeModal();
     } else {
         alert('Please fill out all fields.');
     }
@@ -140,7 +140,7 @@ function filterContacts() {
     renderContacts(filteredContacts); 
 }
 
-// Initial rendering of contacts when the page loads
+
 window.onload = function() {
     renderContacts(contacts); 
 };
