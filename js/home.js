@@ -172,11 +172,3 @@ function filterContacts() {
     );
     renderContacts(filteredContacts); 
 }
-
-
-window.onload = function() {
-
-
-
-    renderContacts(contacts); 
-};
