@@ -12,30 +12,37 @@ let contacts = []
     { id: 5, name: 'Bob Jones', nickname: 'Bobby', phone: '555-987-6543', email: 'bob@example.com' },
 ];*/
 
-fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContact.php', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(signupData)  // Convert the login data to JSON format
-})
-    .then(response => {
-        console.log("here");
-        return response.json()
-    })// Parse the JSON response from the server
-    .then(json => {
-        console.log(json);
-        contacts = json;
-        if (json.error === "") {
-            window.location.href = 'login.html';  // Redirect to your home page
-        } else {
-            document.getElementById('serverError').textContent = json.error;
-        }
-    })// Parse the JSON response from the server
-    .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('serverError').textContent = 'An error occurred while trying to register, try again.';
-    });
+window.onload = function() {
+
+    fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContact.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(signupData)  // Convert the login data to JSON format
+    })
+        .then(response => {
+            console.log("here");
+            return response.json()
+        })// Parse the JSON response from the server
+        .then(json => {
+            console.log(json);
+            contacts = json;
+            if (json.error === "") {
+                window.location.href = 'login.html';  // Redirect to your home page
+            } else {
+                document.getElementById('serverError').textContent = json.error;
+            }
+        })// Parse the JSON response from the server
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('serverError').textContent = 'An error occurred while trying to register, try again.';
+        });
+
+    renderContacts(contacts);
+};
+
+
 
 // Function to render contact cards
 function renderContacts(filteredContacts) {
@@ -167,5 +174,8 @@ function filterContacts() {
 
 
 window.onload = function() {
+
+
+
     renderContacts(contacts); 
 };
