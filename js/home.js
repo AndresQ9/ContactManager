@@ -12,7 +12,7 @@ let contacts = []
     { id: 5, name: 'Bob Jones', nickname: 'Bobby', phone: '555-987-6543', email: 'bob@example.com' },
 ];*/
 
-window.onload = function() {
+window.addEventListener('load', function() {
 
     console.log("here");
     fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContact.php', {
@@ -41,7 +41,7 @@ window.onload = function() {
         });
 
     renderContacts(contacts);
-};
+});
 
 
 
