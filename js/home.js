@@ -29,7 +29,7 @@ function renderContacts(filteredContacts) {
     contactGrid.innerHTML = ''; 
 
     // Sort the filtered contacts alphabetically by name
-    filteredContacts.sort((a, b) => a.name.localeCompare(b.name));
+    //filteredContacts.sort((a, b) => a.name.localeCompare(b.name));
 
     filteredContacts.forEach(contact => {
         const contactCard = document.createElement('div');
