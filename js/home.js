@@ -108,40 +108,46 @@ function openEditModal(contact) {
 
 // Function to submit the contact from the modal form
 function submitContact() {
-
     const name = document.getElementById('name').value;
     const nickname = document.getElementById('nickname').value;
     const phone = document.getElementById('phone').value;
     const email = document.getElementById('email').value;
 
     if (name && nickname && phone && email) {
-        if (editingContactId) {
-            // Edit the existing contact
-            const contactIndex = contacts.findIndex(contact => contact.id === editingContactId);
-            if (contactIndex !== -1) {
-                contacts[contactIndex].name = name;
-                contacts[contactIndex].nickname = nickname;
-                contacts[contactIndex].phone = phone;
-                contacts[contactIndex].email = email;
-            }
-        } else {
-            // Create a new contact
-            const newContact = {
-                id: contacts.length + 1, // Generate a new unique id
-                name,
-                nickname,
-                phone,
-                email
-            };
-            contacts.push(newContact); // Add new contact to the array
-        }
+        // Prepare data to send
+        const contactData = {
+            id: editingContactId, // Use null or a unique value for new contacts
+            name,
+            nickname,
+            phone,
+            email
+        };
 
-        renderContacts(contacts);
-        closeModal();
+        fetch('http://dylanswebsite.xyz/LAMPAPI/saveContact.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(contactData) // Send data as JSON
+        })
+        .then(response => response.json())
+        .then(json => {
+            if (json.success) {
+                loadContacts(); // Reload contacts to reflect changes
+                closeModal();
+            } else {
+                alert('Error saving contact: ' + json.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while saving the contact.');
+        });
     } else {
         alert('Please fill out all fields.');
     }
 }
+
 // Function to filter contacts based on search query
 function filterContacts() {
     searchQuery = document.getElementById('searchBar').value.toLowerCase();
