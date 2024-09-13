@@ -6,7 +6,7 @@ $password = "password";
 $dbname = "your_database";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli("localhost", "root", "dylanswebsite", "contactmanager");
 
 // Check connection
 if ($conn->connect_error) {
