@@ -43,7 +43,7 @@ function renderContacts(filteredContacts) {
         contactName.textContent = contact.firstName;
 
         const contactNickname = document.createElement('p');
-        contactNickname.innerHTML = `<strong>Nickname:</strong> ${contact.nickname}`;
+        contactNickname.innerHTML = `<strong>Nickname:</strong> ${contact.lastName}`;
 
         const contactPhone = document.createElement('p');
         contactPhone.innerHTML = `<strong>Phone:</strong> ${contact.phone}`;
@@ -164,11 +164,11 @@ function loadContacts() {
             if (json.error !== "") {
                 document.getElementById('serverError').textContent = json.error;
             }
+            renderContacts(contacts);
         })// Parse the JSON response from the server
         .catch(error => {
             console.error('Error:', error);
             document.getElementById('serverError').textContent = 'An error occurred while trying to register, try again.';
         });
 
-    renderContacts(contacts);
 }
