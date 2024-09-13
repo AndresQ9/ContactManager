@@ -161,9 +161,7 @@ function loadContacts() {
         .then(json => {
             console.log(json);
             contacts = json.contacts;
-            if (json.error === "") {
-                window.location.href = 'login.html';  // Redirect to your home page
-            } else {
+            if (json.error !== "") {
                 document.getElementById('serverError').textContent = json.error;
             }
         })// Parse the JSON response from the server
