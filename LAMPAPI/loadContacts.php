@@ -6,7 +6,7 @@
 	$searchCount = 0;
 	$searchResults = '{ "contacts": [';
 
-	$conn = new mysqli("localhost", "root", ":dQD:QR4/HMX", "contactmanager"); //need to change user and password when deployed
+	$conn = new mysqli("localhost", "root", "dylanswebsite", "contactmanager"); //need to change user and password when deployed
 	if( $conn->connect_error ){
 		returnWithError( $conn->connect_error );
 	}

@@ -13,7 +13,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     };
 
     // Send the login data using fetch
-    fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/Login.php', {
+    fetch('http://dylanswebsite.xyz/LAMPAPI/Login.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
