@@ -1,46 +1,46 @@
 <?php
-header('Content-Type: application/json');
+// Database connection details
+$servername = "localhost";
+$username = "root";
+$password = "password";
+$dbname = "your_database";
 
-// Database connection parameters
-$host = 'localhost'; // Your database host
-$db = 'your_database'; // Your database name
-$user = 'your_user'; // Your database username
-$pass = 'your_password'; // Your database password
-
-// Create database connection
-$mysqli = new mysqli("localhost", "root", "dylanswebsite", "contactmanager");
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
-if ($mysqli->connect_error) {
-    die(json_encode(['success' => false, 'message' => 'Database connection failed: ' . $mysqli->connect_error]));
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Get POST data
+// Get the input data from the POST request
 $data = json_decode(file_get_contents('php://input'), true);
 
-if ($data) {
-    $name = $mysqli->real_escape_string($data['name']);
-    $nickname = $mysqli->real_escape_string($data['nickname']);
-    $phone = $mysqli->real_escape_string($data['phone']);
-    $email = $mysqli->real_escape_string($data['email']);
-    $id = isset($data['id']) ? intval($data['id']) : null;
+$id = isset($data['id']) ? $data['id'] : null;
+$name = $data['name'];
+$nickname = $data['nickname'];
+$phone = $data['phone'];
+$email = $data['email'];
 
-    if ($id) {
-        // Update existing contact
-        $query = "UPDATE contacts SET name='$name', nickname='$nickname', phone='$phone', email='$email' WHERE id=$id";
-    } else {
-        // Insert new contact
-        $query = "INSERT INTO contacts (name, nickname, phone, email) VALUES ('$name', '$nickname', '$phone', '$email')";
-    }
-
-    if ($mysqli->query($query)) {
-        echo json_encode(['success' => true]);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Error: ' . $mysqli->error]);
-    }
-
-    $mysqli->close();
+// Check if it's an update or insert
+if ($id) {
+    // Update existing contact
+    $stmt = $conn->prepare("UPDATE contacts SET name=?, nickname=?, phone=?, email=? WHERE id=?");
+    $stmt->bind_param("ssssi", $name, $nickname, $phone, $email, $id);
 } else {
-    echo json_encode(['success' => false, 'message' => 'Invalid input']);
+    // Insert new contact
+    $stmt = $conn->prepare("INSERT INTO contacts (name, nickname, phone, email) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $name, $nickname, $phone, $email);
 }
+
+// Execute the statement and check if successful
+if ($stmt->execute()) {
+    echo json_encode(['success' => true]);
+} else {
+    echo json_encode(['success' => false, 'message' => $stmt->error]);
+}
+
+// Close connections
+$stmt->close();
+$conn->close();
 ?>
