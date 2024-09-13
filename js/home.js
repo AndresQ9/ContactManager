@@ -142,8 +142,13 @@ function submitContact() {
 // Function to filter contacts based on search query
 function filterContacts() {
     searchQuery = document.getElementById('searchBar').value.toLowerCase();
-    loadContacts();
-    renderContacts(filteredContacts); 
+    const filteredContacts = contacts.filter(contact => 
+        contact.name.toLowerCase().includes(searchQuery) ||
+        contact.nickname.toLowerCase().includes(searchQuery) ||
+        contact.phone.toLowerCase().includes(searchQuery) ||
+        contact.email.toLowerCase().includes(searchQuery)
+    );
+    renderContacts(filteredContacts);  
 }
 
 function loadContacts() {
