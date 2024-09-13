@@ -150,14 +150,26 @@ function submitContact() {
 
 // Function to filter contacts based on search query
 function filterContacts() {
-    searchQuery = document.getElementById('searchBar').value.toLowerCase();
-    const filteredContacts = contacts.filter(contact => 
-        contact.name.toLowerCase().includes(searchQuery) ||
-        contact.nickname.toLowerCase().includes(searchQuery) ||
-        contact.phone.toLowerCase().includes(searchQuery) ||
-        contact.email.toLowerCase().includes(searchQuery)
-    );
-    renderContacts(filteredContacts);  
+    var input = document.getElementById('searchBar');
+    var filter = input.value.toLowerCase();
+    var contactGrid = document.getElementById("contactGrid");
+    var contactCards = contactGrid.getElementsByClassName('contact-card');
+
+    // Loop through all contact cards, and hide those who don't match the search query
+    for (var i = 0; i < contactCards.length; i++) {
+        var contactCard = contactCards[i];
+        var contactName = contactCard.getElementsByTagName("h3")[0].textContent.toLowerCase();
+        var contactNickname = contactCard.getElementsByTagName("p")[0].textContent.toLowerCase();
+        var contactPhone = contactCard.getElementsByTagName("p")[1].textContent.toLowerCase();
+        var contactEmail = contactCard.getElementsByTagName("p")[2].textContent.toLowerCase();
+        
+        // Check if any of the contact details match the search query
+        if (contactName.includes(filter) || contactNickname.includes(filter) || contactPhone.includes(filter) || contactEmail.includes(filter)) {
+            contactCard.style.display = "";
+        } else {
+            contactCard.style.display = "none";
+        }
+    }
 }
 
 function loadContacts() {
