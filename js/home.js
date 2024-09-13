@@ -45,7 +45,8 @@ function renderContacts(filteredContacts) {
         deleteButton.classList.add('delete-button');
         deleteButton.onclick = function(event) {
             event.stopPropagation();
-            deleteContact(contact.id); 
+            //deleteContact(contact.id);
+            confirmDelete(contact.id);
         };
 
         contactCard.appendChild(contactName);
@@ -61,12 +62,27 @@ function renderContacts(filteredContacts) {
 // Function to delete a contact by ID
 function deleteContact(contactId) {
     const contactIndex = contacts.findIndex(contact => contact.id === contactId);
-
     if (contactIndex !== -1) {
-        contacts.splice(contactIndex, 1); 
-        renderContacts(contacts); 
+        contacts.splice(contactIndex, 1);
+        renderContacts(contacts);
     }
 }
+
+//Opens modal to confirm deletion of contact
+function confirmDelete(contactId) {
+    document.getElementById('confirmDelModal').style.display = 'block';
+    document.getElementById('delContactId').value = contactId;
+}
+
+//Deletes contact if confirmed
+function handleClick(event) {
+    document.getElementById('confirmDelModal').style.display = 'none';
+    let contactId = document.getElementById('delContactId').value;
+    if (event.target.id == "confirmDelete") {
+        deleteContact(contactId);
+    }
+}
+
 
 // Function to open the "Create Contact" modal
 function openCreateModal() {
