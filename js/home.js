@@ -117,7 +117,7 @@ function submitContact() {
         userId: userId // Ensure this is the correct ID of the logged-in user
     };
 
-    fetch('http://dylanswebsite.xyz/LAMPAPI/createContact.php', {
+    fetch('http://dylanswebsite.xyz/LAMPAPI/saveContact.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
