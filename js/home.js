@@ -117,12 +117,6 @@ let userId = document.cookie.split("; ").find((row) => row.startsWith("userId=")
 if (userId) {
     // Display the userId on the screen if an element with the ID 'userIdDisplay' exists
     const userIdDisplayElement = document.getElementById('userIdDisplay');
-    if (userIdDisplayElement) {
-        userIdDisplayElement.textContent = `User ID: ${userId}`;
-    } else {
-        console.warn('Element to display User ID not found.');
-    }
-
     // Log the userId to the console
     console.log(`User ID: ${userId}`);
 } else {
