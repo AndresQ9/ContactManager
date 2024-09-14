@@ -10,12 +10,11 @@
   <div class="home-container">
     <!-- Search bar and Create button -->
     <input type="text" id="searchBar" placeholder="Search Contacts" oninput="filterContacts()" class="search-bar">
-    <div role="alert" class="js-flash-alert" id="serverError">
+    <div role="alert" class="js-flash-alert" id="serverError"></div>
     <button class="create-contact-button" onclick="openCreateModal()">Create</button>
 
     <!-- Contact grid where the contact cards will be rendered -->
-    <div class="contact-grid" id="contactGrid"></div> 
-  </div>
+    <div class="contact-grid" id="contactGrid"></div>
 
   <!-- Modal for Creating a New Contact -->
   <div id="contactModal" class="modal">
