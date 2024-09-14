@@ -111,34 +111,22 @@ function openEditModal(contact) {
 function submitContact() {
     // Check if userId is available
     // Retrieve userId from the cookie
-let userId = document.cookie.split("; ").find((row) => row.startsWith("userId="))?.split("=")[1];
+    let userId = document.cookie.split("; ").find((row) => row.startsWith("userId="))?.split("=")[1];
 
-// Log the userId value if it exists
-if (userId) {
-    // Display the userId on the screen if an element with the ID 'userIdDisplay' exists
-    const userIdDisplayElement = document.getElementById('userIdDisplay');
-    // Log the userId to the console
-    console.log(`User ID: ${userId}`);
-} else {
-    console.warn('User ID not found in cookies.');
-}
-
-    // Gather contact data from the form
     const contactData = {
         firstName: document.getElementById('name').value,
         lastName: document.getElementById('nickname').value,  // Assuming 'nickname' is actually 'lastName'
         phone: document.getElementById('phone').value,
         email: document.getElementById('email').value,
-        userId: userId // Ensure this is the correct ID of the logged-in user
+        userId: userId // Include the userId in the contact data
     };
 
-    // Send contact data to the server
     fetch('http://dylanswebsite.xyz/LAMPAPI/saveContact.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(contactData)  // Convert the contact data to JSON format
+        body: JSON.stringify(contactData)
     })
     .then(response => {
         if (!response.ok) {
@@ -151,7 +139,7 @@ if (userId) {
             throw new Error(json.error);
         }
         console.log('Contact created:', json);
-        loadContacts(); // Reload contacts to reflect changes
+        loadContacts(); 
     })
     .catch(error => {
         console.error('Error:', error);
