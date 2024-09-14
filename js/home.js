@@ -107,8 +107,8 @@ function openEditModal(contact) {
     editingContactId = contact.id;
     document.getElementById('modalTitle').textContent = 'Edit Contact';
     document.getElementById('contactId').value = contact.id;
-    document.getElementById('name').value = contact.name;
-    document.getElementById('nickname').value = contact.nickname;
+    document.getElementById('name').value = contact.firstName;
+    document.getElementById('nickname').value = contact.lastName;
     document.getElementById('phone').value = contact.phone;
     document.getElementById('email').value = contact.email;
     document.getElementById('contactModal').style.display = 'block';
