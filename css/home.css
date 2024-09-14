@@ -11,6 +11,10 @@ body {
     color: red;
 }
 
+.feedback {
+    justify-content: center;
+}
+
 
 .home-container {
     padding: 20px;
