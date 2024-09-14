@@ -19,7 +19,7 @@ if ($userId && $contactId) {
     }
 
     // Prepare and execute your SQL query to delete the contact
-    $stmt = $conn->prepare("DELETE FROM contacts WHERE id = ? AND userId = ?");
+    $stmt = $conn->prepare("DELETE FROM contacts WHERE contactID = ? AND userId = ?");
     $stmt->bind_param("ii", $contactId, $userId);
     $success = $stmt->execute();
 
