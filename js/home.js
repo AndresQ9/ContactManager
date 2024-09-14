@@ -142,15 +142,11 @@ function submitContact() {
                 if (json.error) {
                     throw new Error(json.error);
                 }
-                console.log('Contact created:', json);
+                document.getElementById('feedback').textContent = 'Contact saved';
                 loadContacts();
             })
             .catch(error => {
-                console.error('Error:', error);
-                const serverErrorElement = document.getElementById('serverError');
-                if (serverErrorElement) {
-                    serverErrorElement.textContent = 'An error occurred: ' + error.message;
-                }
+                document.getElementById('feedback').textContent = 'An error occurred try again';
             });
     }
     else if(document.getElementById('modalTitle').textContent === 'Edit Contact'){
@@ -170,17 +166,12 @@ function submitContact() {
                 if (json.error) {
                     throw new Error(json.error);
                 }
-                console.log('Contact created:', json);
+                document.getElementById('feedback').textContent = 'Contact saved';
                 loadContacts();
             })
             .catch(error => {
                 console.error('Error:', error);
-                const serverErrorElement = document.getElementById('serverError');
-                if (serverErrorElement) {
-                    serverErrorElement.textContent = 'An error occurred: ' + error.message;
-                } else {
-                    alert('An error occurred: ' + error.message); // Fallback if the element doesn't exist
-                }
+                document.getElementById('feedback').textContent = 'An error occurred try again';
             });
     }
 }
