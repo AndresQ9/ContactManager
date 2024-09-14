@@ -26,7 +26,7 @@
                     $searchResults .= ",";
                 }
                 $searchCount++;
-                $searchResults .= '{ "id": "' . $row["contactID"] . '", "firstName": "' . $row["firstName"] . '", "lastName": "' . $row["lastName"] . '", "phone": "' . $row["phone"] . '", "email": "' . $row["email"] . '"}' ;
+                $searchResults .= '{ "id": "' . $row["contactID"] . '", "firstName": "' . $row["firstName"] . '", "lastName": "' . $row["lastName"] . '", "phone": "' . $row["phone"] . '", "email": "' . $row["email"] . '", "dateCreated": "' . $row["dateCreated"] . '"}' ;
             }
             $searchResults .= '], "error": "" }';
 
