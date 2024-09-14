@@ -165,7 +165,7 @@ function submitContact() {
             body: JSON.stringify(contactData)
         })
             .then(response => {
-                console.log(response.text());
+                //console.log(response.text());
                 return response.json();
             })
             .then(json => {
