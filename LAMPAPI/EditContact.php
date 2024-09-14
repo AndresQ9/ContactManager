@@ -35,4 +35,9 @@ error_reporting(E_ALL);
 		echo $retValue;
 	}
 
+    function getRequestInfo()
+	{
+		return json_decode(file_get_contents('php://input'), true);
+	}
+
 ?>
