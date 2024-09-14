@@ -109,6 +109,19 @@ function openEditModal(contact) {
 // Function to submit the contact from the modal form
 // Function to submit the contact from the modal form
 function submitContact() {
+    // Check if userId is available
+    if (!userId) {
+        console.error('User ID is not available. User might not be logged in.');
+        const serverErrorElement = document.getElementById('serverError');
+        if (serverErrorElement) {
+            serverErrorElement.textContent = 'User not logged in.';
+        } else {
+            alert('User not logged in.');
+        }
+        return;
+    }
+
+    // Gather contact data from the form
     const contactData = {
         firstName: document.getElementById('name').value,
         lastName: document.getElementById('nickname').value,  // Assuming 'nickname' is actually 'lastName'
@@ -117,12 +130,13 @@ function submitContact() {
         userId: userId // Ensure this is the correct ID of the logged-in user
     };
 
+    // Send contact data to the server
     fetch('http://dylanswebsite.xyz/LAMPAPI/saveContact.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(contactData)
+        body: JSON.stringify(contactData)  // Convert the contact data to JSON format
     })
     .then(response => {
         if (!response.ok) {
@@ -135,7 +149,7 @@ function submitContact() {
             throw new Error(json.error);
         }
         console.log('Contact created:', json);
-        loadContacts(); 
+        loadContacts(); // Reload contacts to reflect changes
     })
     .catch(error => {
         console.error('Error:', error);
