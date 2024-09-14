@@ -160,7 +160,7 @@ function loadContacts() {
         .then(json => {
             console.log(json);
             contacts = json.contacts;
-            document.getElementById('serverError').textContent = json.errorr
+            document.getElementById('serverError').textContent = json.error;
             renderContacts(contacts);
         })// Parse the JSON response from the server
         .catch(error => {
