@@ -6,6 +6,7 @@
 	$userId = intval($inData["userId"]);
 	$page = intval($inData["page"]);
 	$offset = 10*($page - 1);
+	$search = '%'.$inData["search"].'%';
 	$searchCount = 0;
 	$searchResults = '{ "contacts": [';
 
@@ -17,7 +18,7 @@
                             //if there's a search
         if( $inData["search"] != ""){
             $stmt = $conn->prepare("SELECT * FROM contacts WHERE userId = ? AND (firstname LIKE ? OR lastname LIKE ? OR email LIKE ? OR phone LIKE ?)");
-            $stmt->bind_param("issss", $userId, $inData["search"], $inData["search"], $inData["search"], $inData["search"]);
+            $stmt->bind_param("issss", $userId, $search, $search, $search, $search);
             $stmt->execute();
             $result = $stmt->get_result();
             while($row = $result->fetch_assoc()){
