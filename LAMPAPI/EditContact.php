@@ -20,7 +20,7 @@ error_reporting(E_ALL);
 	}
 	else
 	{
-		$stmt = $conn->prepare("UPDATE Contacts SET firstName = ?, lastName = ? , Email = ?, Phone = ? WHERE ContactID = ? AND UserId = ?"); //TODO test
+		$stmt = $conn->prepare("UPDATE Contacts SET firstName = ?, lastName = ? , Email = ?, Phone = ? WHERE ContactID = ? AND userId = ?"); //TODO test
 		$stmt->bind_param("ssssii", $firstName, $lastName, $email, $phone, $contactId, $userId);
 		$stmt->execute();
 		$stmt->close();
