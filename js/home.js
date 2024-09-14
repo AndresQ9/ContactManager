@@ -110,12 +110,24 @@ function openEditModal(contact) {
 // Function to submit the contact from the modal form
 function submitContact() {
     // Check if userId is available
+    // Retrieve userId from the cookie
+let userId = document.cookie.split("; ").find((row) => row.startsWith("userId="))?.split("=")[1];
+
+// Log the userId value if it exists
+if (userId) {
+    // Display the userId on the screen if an element with the ID 'userIdDisplay' exists
     const userIdDisplayElement = document.getElementById('userIdDisplay');
     if (userIdDisplayElement) {
         userIdDisplayElement.textContent = `User ID: ${userId}`;
     } else {
         console.warn('Element to display User ID not found.');
     }
+
+    // Log the userId to the console
+    console.log(`User ID: ${userId}`);
+} else {
+    console.warn('User ID not found in cookies.');
+}
 
     // Gather contact data from the form
     const contactData = {
