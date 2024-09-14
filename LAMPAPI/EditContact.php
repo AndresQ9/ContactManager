@@ -1,5 +1,5 @@
 <?php
-	$inData = getRequestInfo();
+	$inData = json_decode(file_get_contents('php://input'), true);
 
 	$contactId = $inData["contactId"];
 	$name = $inData["name"];
@@ -22,21 +22,11 @@
 		returnWithError("");
 	}
 
-	function getRequestInfo()
-	{
-		return json_decode(file_get_contents('php://input'), true);
-	}
-
-	function sendResultInfoAsJson( $obj )
-	{
-		header('Content-type: application/json');
-		echo $obj;
-	}
-
 	function returnWithError( $err )
 	{
 		$retValue = '{"error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
+		header('Content-type: application/json');
+		echo $retValue;
 	}
 
 ?>
