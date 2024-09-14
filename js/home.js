@@ -163,9 +163,7 @@ function submitContact() {
             body: JSON.stringify(contactData)
         })
             .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Server error: ${response.statusText}`);
-                }
+                console.log(response.text());
                 return response.json();
             })
             .then(json => {
