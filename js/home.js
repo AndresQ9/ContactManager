@@ -69,7 +69,6 @@ function renderContacts(filteredContacts) {
 
 // Function to delete a contact by ID
 function deleteContact(contactId) {
-    console.log(contactId);
     fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/deleteContact.php', {
         method: 'POST',
         headers: {
@@ -78,7 +77,7 @@ function deleteContact(contactId) {
         body: JSON.stringify({userId: userId, contactId: contactId})  // Convert the login data to JSON format
     })
         .then(response => {
-            console.log(response.text());
+           // console.log(response.text());
             return response.json()
         })// Parse the JSON response from the server
         .then(json => {
