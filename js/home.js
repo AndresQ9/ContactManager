@@ -140,7 +140,7 @@ function submitContact() {
 function filterContacts() {
     searchQuery = document.getElementById('searchBar').value.toLowerCase();
     loadContacts();
-    renderContacts(filteredContacts); 
+    //renderContacts(filteredContacts);
 }
 
 function loadContacts() {
