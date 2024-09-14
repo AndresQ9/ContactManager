@@ -27,42 +27,44 @@ function renderContacts(filteredContacts) {
     const contactGrid = document.getElementById('contactGrid');
     contactGrid.innerHTML = '';
 
-    filteredContacts.forEach(contact => {
-        const contactCard = document.createElement('div');
-        contactCard.classList.add('contact-card');
+    if (filteredContacts.length > 0) {
+        filteredContacts.forEach(contact => {
+            const contactCard = document.createElement('div');
+            contactCard.classList.add('contact-card');
 
-        contactCard.onclick = function() {
-            openEditModal(contact);
-        }
+            contactCard.onclick = function () {
+                openEditModal(contact);
+            }
 
-        const contactName = document.createElement('h3');
-        contactName.textContent = contact.firstName;
+            const contactName = document.createElement('h3');
+            contactName.textContent = contact.firstName;
 
-        const contactNickname = document.createElement('p');
-        contactNickname.innerHTML = `<strong>Nickname:</strong> ${contact.lastName}`;
+            const contactNickname = document.createElement('p');
+            contactNickname.innerHTML = `<strong>Nickname:</strong> ${contact.lastName}`;
 
-        const contactPhone = document.createElement('p');
-        contactPhone.innerHTML = `<strong>Phone:</strong> ${contact.phone}`;
+            const contactPhone = document.createElement('p');
+            contactPhone.innerHTML = `<strong>Phone:</strong> ${contact.phone}`;
 
-        const contactEmail = document.createElement('p');
-        contactEmail.innerHTML = `<strong>Email:</strong> ${contact.email}`;
+            const contactEmail = document.createElement('p');
+            contactEmail.innerHTML = `<strong>Email:</strong> ${contact.email}`;
 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = '×';
-        deleteButton.classList.add('delete-button');
-        deleteButton.onclick = function(event) {
-            event.stopPropagation();
-            deleteContact(contact.id); 
-        };
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = '×';
+            deleteButton.classList.add('delete-button');
+            deleteButton.onclick = function (event) {
+                event.stopPropagation();
+                deleteContact(contact.id);
+            };
 
-        contactCard.appendChild(contactName);
-        contactCard.appendChild(contactNickname);
-        contactCard.appendChild(contactPhone);
-        contactCard.appendChild(contactEmail);
-        contactCard.appendChild(deleteButton);
+            contactCard.appendChild(contactName);
+            contactCard.appendChild(contactNickname);
+            contactCard.appendChild(contactPhone);
+            contactCard.appendChild(contactEmail);
+            contactCard.appendChild(deleteButton);
 
-        contactGrid.appendChild(contactCard);
-    });
+            contactGrid.appendChild(contactCard);
+        });
+    }
 }
 
 // Function to delete a contact by ID
