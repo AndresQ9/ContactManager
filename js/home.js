@@ -152,7 +152,7 @@ function loadContacts() {
         body: JSON.stringify(loadData)  // Convert the login data to JSON format
     })
         .then(response => {
-            console.log(response.text());
+            //console.log(response.text());
             return response.json()
         })// Parse the JSON response from the server
         .then(json => {
