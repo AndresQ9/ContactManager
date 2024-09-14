@@ -7,7 +7,8 @@ error_reporting(E_ALL);
 	$inData = getRequestInfo();
 
 	$contactId = $inData["contactId"];
-	$name = $inData["name"];
+	$firstName = $inData["firstName"];
+	$lastName = $inData["lastName"]
 	$userId = $inData["userId"];
 	$email = $inData["email"];
 	$phone = $inData["phone"];
@@ -19,7 +20,7 @@ error_reporting(E_ALL);
 	}
 	else
 	{
-		$stmt = $conn->prepare("UPDATE Contacts SET ContactName = ?, Email = ?, Phone = ? WHERE id = ? AND UserId = ?"); //TODO test
+		$stmt = $conn->prepare("UPDATE Contacts SET firstName = ?, lastName = ? , Email = ?, Phone = ? WHERE ContactID = ? AND UserId = ?"); //TODO test
 		$stmt->bind_param("sssii", $name, $email, $phone, $contactId, $userId);
 		$stmt->execute();
 		$stmt->close();
