@@ -115,9 +115,10 @@ function openEditModal(contact) {
 }
 
 // Function to submit the contact from the modal form
-function submitContact() {
+function submitContact(isCreate) {
 
     const contactData = {
+        isCreate: isCreate,
         firstName: document.getElementById('name').value,
         lastName: document.getElementById('nickname').value,  // Assuming 'nickname' is actually 'lastName'
         phone: document.getElementById('phone').value,
