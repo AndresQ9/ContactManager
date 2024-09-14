@@ -19,24 +19,22 @@
             $stmt->bind_param("is", $userId, $inData["search"], $inData["search"], $inData["search"], $inData["search"]);
             $stmt->execute();
             while($row = $result->fetch_assoc())
-                        		{
-                        			if( $searchCount > 0 )
-                        			{
-                        				$searchResults .= ",";
-                        			}
-                        			$searchCount++;
-                        			$searchResults .= '{ "firstName": "' . $row["firstName"] . '", "lastName": "' . $row["lastName"] . '", "phone": "' . $row["phone"] . '", "email": "' . $row["email"] . '"}' ;
-                        		}
-                            $searchResults .= '], "error": "" }';
+            {
+                if( $searchCount > 0 )
+                {
+                    $searchResults .= ",";
+                }
+                $searchCount++;
+                $searchResults .= '{ "firstName": "' . $row["firstName"] . '", "lastName": "' . $row["lastName"] . '", "phone": "' . $row["phone"] . '", "email": "' . $row["email"] . '"}' ;
+            }
+            $searchResults .= '], "error": "" }';
 
-                        if( $searchCount == 0 )
-                                {
-                                    returnWithError( "No Records Found" );
-                                }
-
-                        else returnWithInfo($searchResults);
-            		}
-         }
+            if( $searchCount == 0 ){
+                returnWithError( "No Records Found" );
+            }
+            else returnWithInfo($searchResults);
+            }
+        }
         //no search so load like normal
 		else{
             $stmt = $conn->prepare(
