@@ -165,7 +165,7 @@ function loadContacts() {
         })// Parse the JSON response from the server
         .catch(error => {
             console.error('Error:', error);
-            document.getElementById('serverError').textContent = 'An error occurred while trying to register, try again.';
+            document.getElementById('serverError').textContent = json.error;
         });
 
 }
