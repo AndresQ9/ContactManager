@@ -49,5 +49,5 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
 function saveCookie()
 {
-    document.cookie = "userId=" + userId + ";expires=" + date.toGMTString();
+    document.cookie = "userId=" + userId;
 }
