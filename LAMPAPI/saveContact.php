@@ -12,12 +12,9 @@ if ($userId) {
         $response = [
             'userId' => null,
             'error' => 'User not logged in'
+            die(json_encode(["error" => "ERROR: User not logged in."]));
         ];
     }
-// Check if userId is available
-if (!$userId) {
-    die(json_encode(["error" => "ERROR: User not logged in."]));
-}
 
 // Get the raw POST data
 $input = file_get_contents("php://input");
