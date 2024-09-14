@@ -1,4 +1,5 @@
 <?php
+    ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
 	$inData = getRequestInfo();
 	$userId = intval($inData["userId"]);
 	$page = intval($inData["page"]);
@@ -14,7 +15,6 @@
                             //if there's a search
         if( $inData["search"] != ""){
             $stmt = $conn->prepare("SELECT * FROM contacts WHERE userId = ? AND (firstname LIKE ? OR lastname LIKE ? OR email LIKE ? OR phone LIKE ?)");
-
             $stmt->bind_param("issss", $userId, $inData["search"], $inData["search"], $inData["search"], $inData["search"]);
             $stmt->execute();
             while($row = $result->fetch_assoc()){
