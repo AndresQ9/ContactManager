@@ -108,44 +108,38 @@ function openEditModal(contact) {
 
 // Function to submit the contact from the modal form
 function submitContact() {
-    const name = document.getElementById('name').value;
-    const nickname = document.getElementById('nickname').value;
-    const phone = document.getElementById('phone').value;
-    const email = document.getElementById('email').value;
+    const contactData = {
+        name: document.getElementById('name').value,
+        nickname: document.getElementById('nickname').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        userId: userId // Assuming userId is stored somewhere
+    };
 
-    if (name && nickname && phone && email) {
-        // Prepare data to send
-        const contactData = {
-            id: editingContactId, // Use null or a unique value for new contacts
-            name,
-            nickname,
-            phone,
-            email
-        };
-
-        fetch('http://dylanswebsite.xyz/LAMPAPI/saveContact.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(contactData) // Send data as JSON
-        })
-        .then(response => response.json())
-        .then(json => {
-            if (json.success) {
-                loadContacts(); // Reload contacts to reflect changes
-                closeModal();
-            } else {
-                alert('Error saving contact: ' + json.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred while saving the contact.');
-        });
-    } else {
-        alert('Please fill out all fields.');
-    }
+    fetch('http://dylanswebsite.xyz/LAMPAPI/saveContact.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(contactData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Server error: ${response.statusText}`);
+        }
+        return response.json(); // Attempt to parse JSON
+    })
+    .then(json => {
+        if (json.error) {
+            throw new Error(json.error);
+        }
+        console.log('Contact created:', json);
+        loadContacts(); // Refresh the contact list
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('serverError').textContent = 'An error occurred: ' + error.message;
+    });
 }
 
 // Function to filter contacts based on search query
