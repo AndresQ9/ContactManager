@@ -26,10 +26,7 @@ window.onload = function() {loadContacts()};
 // Function to render contact cards
 function renderContacts(filteredContacts) {
     const contactGrid = document.getElementById('contactGrid');
-    contactGrid.innerHTML = ''; 
-
-    // Sort the filtered contacts alphabetically by name
-    //filteredContacts.sort((a, b) => a.name.localeCompare(b.name));
+    contactGrid.innerHTML = '';
 
     filteredContacts.forEach(contact => {
         const contactCard = document.createElement('div');
