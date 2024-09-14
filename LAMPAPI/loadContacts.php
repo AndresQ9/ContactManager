@@ -19,6 +19,7 @@
             $stmt = $conn->prepare("SELECT * FROM contacts WHERE userId = ? AND (firstname LIKE ? OR lastname LIKE ? OR email LIKE ? OR phone LIKE ?)");
             $stmt->bind_param("issss", $userId, $inData["search"], $inData["search"], $inData["search"], $inData["search"]);
             $stmt->execute();
+            $result = $stmt->get_result();
             while($row = $result->fetch_assoc()){
                 if( $searchCount > 0 ){
                     $searchResults .= ",";
