@@ -109,48 +109,43 @@ function openEditModal(contact) {
 // Function to submit the contact from the modal form
 // Function to submit the contact from the modal form
 function submitContact() {
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const phone = document.getElementById('phone').value;
-    const email = document.getElementById('email').value;
-    
-    // Get userId from the cookie
-    const userId = document.cookie.split('; ').find(row => row.startsWith('userId=')).split('=')[1];
+    const contactData = {
+        firstName: document.getElementById('name').value,
+        lastName: document.getElementById('nickname').value,  // Assuming 'nickname' is actually 'lastName'
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        userId: userId // Ensure this is the correct ID of the logged-in user
+    };
 
-    if (firstName && lastName && phone && email && userId) {
-        const contactData = {
-            userId: userId,  // Attach userId from cookie
-            firstName: firstName,
-            lastName: lastName,
-            phone: phone,
-            email: email
-        };
-
-        fetch('http://dylanswebsite.xyz/LAMPAPI/createContact.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(contactData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                console.error('Error:', data.error);
-                document.getElementById('serverError').textContent = data.error; // Display the error on the page
-            } else {
-                console.log('Contact created successfully');
-                // Optionally reload the contacts or update the UI as needed
-                loadContacts();  // Assuming this function reloads the contacts
-                closeModal();    // Close the modal if the contact was successfully created
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    } else {
-        alert('Please fill out all fields.');
-    }
+    fetch('http://dylanswebsite.xyz/LAMPAPI/createContact.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(contactData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Server error: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(json => {
+        if (json.error) {
+            throw new Error(json.error);
+        }
+        console.log('Contact created:', json);
+        loadContacts(); 
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        const serverErrorElement = document.getElementById('serverError');
+        if (serverErrorElement) {
+            serverErrorElement.textContent = 'An error occurred: ' + error.message;
+        } else {
+            alert('An error occurred: ' + error.message); // Fallback if the element doesn't exist
+        }
+    });
 }
 
 
