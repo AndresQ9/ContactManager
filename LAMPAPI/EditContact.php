@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 
 	$contactId = intval($inData["contactId"]);
 	$firstName = $inData["firstName"];
-	$lastName = $inData["lastName"]
+	$lastName = $inData["lastName"];
 	$userId = intval($inData["userId"]);
 	$email = $inData["email"];
 	$phone = $inData["phone"];
