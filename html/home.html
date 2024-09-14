@@ -10,6 +10,7 @@
   <div class="home-container">
     <!-- Search bar and Create button -->
     <input type="text" id="searchBar" placeholder="Search Contacts" oninput="filterContacts()" class="search-bar">
+    <div role="alert" class="js-flash-alert" id="serverError">
     <button class="create-contact-button" onclick="openCreateModal()">Create</button>
 
     <!-- Contact grid where the contact cards will be rendered -->
