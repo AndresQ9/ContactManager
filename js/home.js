@@ -74,12 +74,50 @@ function renderContacts(filteredContacts) {
 
 // Function to delete a contact by ID
 function deleteContact(contactId) {
-    const contactIndex = contacts.findIndex(contact => contact.id === contactId);
+    // Retrieve userId from the cookie
+    let userId = document.cookie.split("; ").find((row) => row.startsWith("userId="))?.split("=")[1];
 
-    if (contactIndex !== -1) {
-        contacts.splice(contactIndex, 1);
-        renderContacts(contacts); 
+    if (!userId) {
+        console.error('User ID not found in cookies.');
+        return;
     }
+
+    // Prepare the data to send to the server
+    const contactData = {
+        contactId: contactId,
+        userId: userId
+    };
+
+    // Send a DELETE request to the server
+    fetch('http://dylanswebsite.xyz/LAMPAPI/deleteContact.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(contactData)  // Convert the data to JSON format
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Server error: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(json => {
+        if (json.error) {
+            throw new Error(json.error);
+        }
+        console.log('Contact deleted:', json);
+        loadContacts();  // Reload contacts after successful deletion
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        const serverErrorElement = document.getElementById('serverError');
+        if (serverErrorElement) {
+            serverErrorElement.textContent = 'An error occurred: ' + error.message;
+        } else {
+            alert('An error occurred: ' + error.message); // Fallback if the element doesn't exist
+        }
+    });
 }
 
 // Function to open the "Create Contact" modal
