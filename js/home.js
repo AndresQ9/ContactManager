@@ -77,7 +77,7 @@ function deleteContact(contactId) {
         body: JSON.stringify({userId, contactId})  // Convert the login data to JSON format
     })
         .then(response => {
-            //console.log(response.text());
+            console.log(response.text());
             return response.json()
         })// Parse the JSON response from the server
         .then(json => {
@@ -85,7 +85,7 @@ function deleteContact(contactId) {
         })// Parse the JSON response from the server
         .catch(error => {
             console.error('Error:', error);
-            document.getElementById('serverError').textContent = json.error;
+            //document.getElementById('serverError').textContent = json.error;
         });
     loadContacts()
 }
