@@ -74,7 +74,7 @@ function deleteContact(contactId) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({userId, contactId})  // Convert the login data to JSON format
+        body: JSON.stringify({userId: userId, contactId: contactId})  // Convert the login data to JSON format
     })
         .then(response => {
             console.log(response.text());
