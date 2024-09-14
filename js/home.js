@@ -113,10 +113,10 @@ function submitContact() {
         nickname: document.getElementById('nickname').value,
         phone: document.getElementById('phone').value,
         email: document.getElementById('email').value,
-        userId: userId // Assuming userId is stored somewhere
+        userId: userId
     };
 
-    fetch('http://dylanswebsite.xyz/LAMPAPI/saveContact.php', {
+    fetch('http://dylanswebsite.xyz/LAMPAPI/createContact.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -127,18 +127,23 @@ function submitContact() {
         if (!response.ok) {
             throw new Error(`Server error: ${response.statusText}`);
         }
-        return response.json(); // Attempt to parse JSON
+        return response.json(); 
     })
     .then(json => {
         if (json.error) {
             throw new Error(json.error);
         }
         console.log('Contact created:', json);
-        loadContacts(); // Refresh the contact list
+        loadContacts(); 
     })
     .catch(error => {
         console.error('Error:', error);
-        document.getElementById('serverError').textContent = 'An error occurred: ' + error.message;
+        const serverErrorElement = document.getElementById('serverError');
+        if (serverErrorElement) {
+            serverErrorElement.textContent = 'An error occurred: ' + error.message;
+        } else {
+            alert('An error occurred: ' + error.message); // Fallback if the element doesn't exist
+        }
     });
 }
 
