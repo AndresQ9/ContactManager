@@ -185,6 +185,7 @@ function submitContact() {
                 }
             });
     }
+    loadContacts();
 }
 
 
