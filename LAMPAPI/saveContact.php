@@ -1,80 +1,64 @@
 <?php
 
-// Helper function to get the JSON request body
-function getRequestInfo()
-{
-    return json_decode(file_get_contents('php://input'), true);
+// Get the userId from the session or cookie (depending on how you're storing it)
+$userId = $_COOKIE['userId'] ?? null;  // Assuming userId is stored in a cookie
+
+// Check if userId is available
+if (!$userId) {
+    die(json_encode(["error" => "ERROR: User not logged in."]));
 }
 
-// Helper function to send a JSON response with an error message
-function returnWithError($err)
-{
-    $retValue = json_encode(["error" => $err]);
-    sendResultInfoAsJson($retValue);
+// Get the raw POST data
+$input = file_get_contents("php://input");
+$data = json_decode($input, true);
+
+// Check if decoding JSON worked
+if (!$data) {
+    die(json_encode(["error" => "ERROR: Invalid input data."]));
 }
 
-// Helper function to send JSON response
-function sendResultInfoAsJson($obj)
-{
-    header('Content-type: application/json');
-    echo $obj;
-}
+// Extract the values from the decoded JSON
+$first_name = $data['firstName'];
+$last_name = $data['lastName'];
+$phone = $data['phone'];
+$email = $data['email'];
 
 // Database connection
-$servername = "localhost"; // Change if needed
-$username = "your_username"; // Your database username
-$password = "your_password"; // Your database password
-$dbname = "your_database"; // Your database name
+$conn = mysqli_connect("localhost", "root", "dylanswebsite", "contactmanager");
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check for connection errors
-if ($conn->connect_error) 
-{
-    returnWithError($conn->connect_error);
-    exit();
+// Check connection
+if ($conn === false) {
+    die(json_encode(["error" => "ERROR: Could not connect. " . mysqli_connect_error()]));
 }
 
-// Get the data from the JSON request
-$inData = getRequestInfo();
-
-$userId = $inData["userId"];
-$firstName = $inData["firstName"];
-$lastName = $inData["lastName"];
-$phone = $inData["phone"];
-$email = $inData["email"];
-
-// Validate the input
-if (empty($userId) || empty($firstName) || empty($lastName) || empty($phone) || empty($email))
-{
-    returnWithError("All fields are required.");
-    exit();
+// Validate that all required fields are filled out
+if (!$first_name || !$last_name || !$phone || !$email) {
+    die(json_encode(["error" => "ERROR: Please fill out all required fields."]));
 }
 
-// SQL query to insert a new contact
-$sql = "INSERT INTO contacts (email, phone, firstName, lastName, userID) 
-        VALUES (?, ?, ?, ?, ?)";
+// Prepared statement to prevent SQL injection
+$sql = "INSERT INTO contacts (firstName, lastName, phone, email, userID) VALUES (?, ?, ?, ?, ?)";
 
-// Prepare statement to prevent SQL injection
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ssssi", $email, $phone, $firstName, $lastName, $userId);
+// Prepare the statement
+if ($stmt = mysqli_prepare($conn, $sql)) {
 
-// Execute the query and check for errors
-if ($stmt->execute()) 
-{
-    // Success response
-    $response = json_encode(["error" => ""]);
-    sendResultInfoAsJson($response);
+    // Bind the parameters to the prepared statement
+    mysqli_stmt_bind_param($stmt, "ssssi", $first_name, $last_name, $phone, $email, $userId);
+    
+    // Execute the prepared statement
+    if (mysqli_stmt_execute($stmt)) {
+        echo json_encode(["message" => "Contact added successfully!"]);
+    } else {
+        echo json_encode(["error" => "ERROR: Could not execute query. " . mysqli_error($conn)]);
+    }
+
+    // Close the statement
+    mysqli_stmt_close($stmt);
+} else {
+    echo json_encode(["error" => "ERROR: Could not prepare query. " . mysqli_error($conn)]);
 }
-else 
-{
-    // Error response
-    returnWithError($stmt->error);
-}
 
-// Close the statement and connection
-$stmt->close();
-$conn->close();
+// Close connection
+mysqli_close($conn);
 
 ?>
-
