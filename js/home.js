@@ -150,8 +150,6 @@ function submitContact() {
                 const serverErrorElement = document.getElementById('serverError');
                 if (serverErrorElement) {
                     serverErrorElement.textContent = 'An error occurred: ' + error.message;
-                } else {
-                    alert('An error occurred: ' + error.message); // Fallback if the element doesn't exist
                 }
             });
     }
