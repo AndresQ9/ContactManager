@@ -1,7 +1,7 @@
 <?php
 
 // Get the userId from the session or cookie (depending on how you're storing it)
-$userId = $_COOKIE['id'] ?? null;  // Assuming userId is stored in a cookie
+$userId = $_COOKIE['userId'] ?? null;  // Assuming userId is stored in a cookie
 
 // Check if userId is available
 if (!$userId) {
