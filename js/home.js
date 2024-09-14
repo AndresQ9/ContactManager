@@ -138,7 +138,7 @@ function submitContact() {
 }
 // Function to filter contacts based on search query
 function filterContacts() {
-    searchQuery = document.getElementById('searchBar').value.toLowerCase();
+    loadData.search = document.getElementById('searchBar').value.toLowerCase();
     console.log(loadData);
     loadContacts();
     //renderContacts(filteredContacts);
