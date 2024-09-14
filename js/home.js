@@ -69,7 +69,7 @@ function renderContacts(filteredContacts) {
 
 // Function to delete a contact by ID
 function deleteContact(contactId) {
-    fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContacts.php', {
+    fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/deleteContact.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
