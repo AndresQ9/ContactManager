@@ -10,18 +10,15 @@
 	if( $conn->connect_error ){
 		returnWithError( $conn->connect_error );
 	}
-	else
-	{
-	    //if there's a search
-	    if( $inData["search"] != ""){
+	else{
+                            //if there's a search
+        if( $inData["search"] != ""){
             $stmt = $conn->prepare("SELECT * FROM contacts WHERE userId = ? AND (firstname LIKE ? OR lastname LIKE ? OR email LIKE ? OR phone LIKE ?)");
 
             $stmt->bind_param("is", $userId, $inData["search"], $inData["search"], $inData["search"], $inData["search"]);
             $stmt->execute();
-            while($row = $result->fetch_assoc())
-            {
-                if( $searchCount > 0 )
-                {
+            while($row = $result->fetch_assoc()){
+                if( $searchCount > 0 ){
                     $searchResults .= ",";
                 }
                 $searchCount++;
@@ -33,10 +30,9 @@
                 returnWithError( "No Records Found" );
             }
             else returnWithInfo($searchResults);
-            }
         }
         //no search so load like normal
-		else{
+        else{
             $stmt = $conn->prepare(
             "SELECT * FROM contacts WHERE userId = ? ORDER BY firstname Limit ? OFFSET ?"
             );
@@ -46,14 +42,14 @@
             $result = $stmt->get_result();
 
             while($row = $result->fetch_assoc())
-            		{
-            			if( $searchCount > 0 )
-            			{
-            				$searchResults .= ",";
-            			}
-            			$searchCount++;
-            			$searchResults .= '{ "firstName": "' . $row["firstName"] . '", "lastName": "' . $row["lastName"] . '", "phone": "' . $row["phone"] . '", "email": "' . $row["email"] . '"}' ;
-            		}
+                    {
+                        if( $searchCount > 0 )
+                        {
+                            $searchResults .= ",";
+                        }
+                        $searchCount++;
+                        $searchResults .= '{ "firstName": "' . $row["firstName"] . '", "lastName": "' . $row["lastName"] . '", "phone": "' . $row["phone"] . '", "email": "' . $row["email"] . '"}' ;
+                    }
                 $searchResults .= '], "error": "" }';
 
             if( $searchCount == 0 )
@@ -62,10 +58,10 @@
                     }
 
             else returnWithInfo($searchResults);
-		}
-		$stmt->close();
-		$conn->close();
-	}
+        }
+    }
+    $stmt->close();
+    $conn->close();
 
 	function getRequestInfo()
 	{
