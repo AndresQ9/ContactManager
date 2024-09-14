@@ -110,15 +110,11 @@ function openEditModal(contact) {
 // Function to submit the contact from the modal form
 function submitContact() {
     // Check if userId is available
-    if (!userId) {
-        console.error('User ID is not available. User might not be logged in.');
-        const serverErrorElement = document.getElementById('serverError');
-        if (serverErrorElement) {
-            serverErrorElement.textContent = 'User not logged in.';
-        } else {
-            alert('User not logged in.');
-        }
-        return;
+    const userIdDisplayElement = document.getElementById('userIdDisplay');
+    if (userIdDisplayElement) {
+        userIdDisplayElement.textContent = `User ID: ${userId}`;
+    } else {
+        console.warn('Element to display User ID not found.');
     }
 
     // Gather contact data from the form
