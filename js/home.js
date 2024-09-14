@@ -117,39 +117,46 @@ function openEditModal(contact) {
 // Function to submit the contact from the modal form
 function submitContact() {
 
-    const name = document.getElementById('name').value;
-    const nickname = document.getElementById('nickname').value;
-    const phone = document.getElementById('phone').value;
-    const email = document.getElementById('email').value;
+    const contactData = {
+        firstName: document.getElementById('name').value,
+        lastName: document.getElementById('nickname').value,  // Assuming 'nickname' is actually 'lastName'
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        userId: userId // Include the userId in the contact data
+    };
 
-    if (name && nickname && phone && email) {
-        if (editingContactId) {
-            // Edit the existing contact
-            const contactIndex = contacts.findIndex(contact => contact.id === editingContactId);
-            if (contactIndex !== -1) {
-                contacts[contactIndex].name = name;
-                contacts[contactIndex].nickname = nickname;
-                contacts[contactIndex].phone = phone;
-                contacts[contactIndex].email = email;
-            }
-        } else {
-            // Create a new contact
-            const newContact = {
-                id: contacts.length + 1, // Generate a new unique id
-                name,
-                nickname,
-                phone,
-                email
-            };
-            contacts.push(newContact); // Add new contact to the array
+    fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/saveContact.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(contactData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Server error: ${response.statusText}`);
         }
-
-        renderContacts(contacts);
-        closeModal();
-    } else {
-        alert('Please fill out all fields.');
-    }
+        return response.json();
+    })
+    .then(json => {
+        if (json.error) {
+            throw new Error(json.error);
+        }
+        console.log('Contact created:', json);
+        loadContacts();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        const serverErrorElement = document.getElementById('serverError');
+        if (serverErrorElement) {
+            serverErrorElement.textContent = 'An error occurred: ' + error.message;
+        } else {
+            alert('An error occurred: ' + error.message); // Fallback if the element doesn't exist
+        }
+    });
 }
+
+
 // Function to filter contacts based on search query
 function filterContacts() {
     loadData.search = document.getElementById('searchBar').value.toLowerCase();

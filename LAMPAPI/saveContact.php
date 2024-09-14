@@ -15,7 +15,7 @@
         $email = $inData['email'] ?? '';
 
         // Connect to the database
-        $conn = new mysqli("localhost", "root", "dylanswebsite", "contactmanager");
+        $conn = new mysqli("localhost", "root", ":dQD:QR4/HMX", "contactmanager");
         if ($conn->connect_error) {
             die(json_encode(['error' => $conn->connect_error]));
         }
