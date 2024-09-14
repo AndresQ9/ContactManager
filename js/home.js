@@ -88,7 +88,6 @@ function deleteContact(contactId) {
             //document.getElementById('serverError').textContent = json.error;
         });
     loadContacts()
-    renderContacts(contacts);
 }
 
 // Function to open the "Create Contact" modal
