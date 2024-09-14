@@ -1,11 +1,10 @@
 let editingContactId = null;
 let contacts = [];
-let searchQuery = "";
 let userId = document.cookie.split("; ").find((row) => row.startsWith("userId="))?.split("=")[1];
 let page = 1;
 let loadData = {
     userId: userId,
-    search: searchQuery,
+    search: "",
     page: 1
 }
 /*const contacts = [
