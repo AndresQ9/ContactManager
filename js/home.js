@@ -116,45 +116,75 @@ function openEditModal(contact) {
 
 // Function to submit the contact from the modal form
 function submitContact() {
-    let isCreate = (document.getElementById('modalTitle').textContent === 'Create a New Contact')
     const contactData = {
-        isCreate: isCreate,
         firstName: document.getElementById('name').value,
         lastName: document.getElementById('nickname').value,  // Assuming 'nickname' is actually 'lastName'
         phone: document.getElementById('phone').value,
         email: document.getElementById('email').value,
         userId: userId // Include the userId in the contact data
     };
-
-    fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/saveContact.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(contactData)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Server error: ${response.statusText}`);
-        }
-        return response.json();
-    })
-    .then(json => {
-        if (json.error) {
-            throw new Error(json.error);
-        }
-        console.log('Contact created:', json);
-        loadContacts();
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        const serverErrorElement = document.getElementById('serverError');
-        if (serverErrorElement) {
-            serverErrorElement.textContent = 'An error occurred: ' + error.message;
-        } else {
-            alert('An error occurred: ' + error.message); // Fallback if the element doesn't exist
-        }
-    });
+    if((document.getElementById('modalTitle').textContent === 'Create a New Contact')) {
+        fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/saveContact.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(contactData)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(json => {
+                if (json.error) {
+                    throw new Error(json.error);
+                }
+                console.log('Contact created:', json);
+                loadContacts();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const serverErrorElement = document.getElementById('serverError');
+                if (serverErrorElement) {
+                    serverErrorElement.textContent = 'An error occurred: ' + error.message;
+                } else {
+                    alert('An error occurred: ' + error.message); // Fallback if the element doesn't exist
+                }
+            });
+    }
+    else if(document.getElementById('modalTitle').textContent === 'Edit Contact'){
+        fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/editContact.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(contactData)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(json => {
+                if (json.error) {
+                    throw new Error(json.error);
+                }
+                console.log('Contact created:', json);
+                loadContacts();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const serverErrorElement = document.getElementById('serverError');
+                if (serverErrorElement) {
+                    serverErrorElement.textContent = 'An error occurred: ' + error.message;
+                } else {
+                    alert('An error occurred: ' + error.message); // Fallback if the element doesn't exist
+                }
+            });
+    }
 }
 
 
