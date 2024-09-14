@@ -22,9 +22,9 @@ function sendResultInfoAsJson($obj)
 
 // Database connection
 $servername = "localhost"; // Change if needed
-$username = "root"; // Your database username
-$password = "dylanswebsite"; // Your database password
-$dbname = "contactmanager"; // Your database name
+$username = "your_username"; // Your database username
+$password = "your_password"; // Your database password
+$dbname = "your_database"; // Your database name
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -38,14 +38,14 @@ if ($conn->connect_error)
 // Get the data from the JSON request
 $inData = getRequestInfo();
 
+$userId = $inData["userId"];
 $firstName = $inData["firstName"];
 $lastName = $inData["lastName"];
 $phone = $inData["phone"];
 $email = $inData["email"];
-$userId = $inData["userId"];  // Ensure that the userId is sent from the frontend
 
 // Validate the input
-if (empty($firstName) || empty($lastName) || empty($phone) || empty($email) || empty($userId))
+if (empty($userId) || empty($firstName) || empty($lastName) || empty($phone) || empty($email))
 {
     returnWithError("All fields are required.");
     exit();
@@ -77,3 +77,4 @@ $stmt->close();
 $conn->close();
 
 ?>
+
