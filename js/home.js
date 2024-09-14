@@ -155,7 +155,7 @@ function submitContact() {
             });
     }
     else if(document.getElementById('modalTitle').textContent === 'Edit Contact'){
-        fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/editContact.php', {
+        fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/EditContact.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
