@@ -27,7 +27,7 @@ function renderContacts(filteredContacts) {
     const contactGrid = document.getElementById('contactGrid');
     contactGrid.innerHTML = '';
 
-    if (filteredContacts.length > 0) {
+    if (filteredContacts != null) {
         filteredContacts.forEach(contact => {
             const contactCard = document.createElement('div');
             contactCard.classList.add('contact-card');
