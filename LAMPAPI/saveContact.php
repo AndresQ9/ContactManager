@@ -2,6 +2,18 @@
 
 // Get the userId from the session or cookie (depending on how you're storing it)
 $userId = $_COOKIE['userId'] ?? null;  // Assuming userId is stored in a cookie
+
+if ($userId) {
+        $response = [
+            'userId' => $userId,
+            'error' => ''
+        ];
+    } else {
+        $response = [
+            'userId' => null,
+            'error' => 'User not logged in'
+        ];
+    }
 // Check if userId is available
 if (!$userId) {
     die(json_encode(["error" => "ERROR: User not logged in."]));
