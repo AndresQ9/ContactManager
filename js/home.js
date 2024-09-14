@@ -115,8 +115,8 @@ function openEditModal(contact) {
 }
 
 // Function to submit the contact from the modal form
-function submitContact(isCreate) {
-
+function submitContact() {
+    let isCreate = (document.getElementById('modalTitle').textContent === 'Create a New Contact')
     const contactData = {
         isCreate: isCreate,
         firstName: document.getElementById('name').value,
