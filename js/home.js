@@ -158,9 +158,7 @@ function loadContacts() {
         .then(json => {
             console.log(json);
             contacts = json.contacts;
-            if (json.error !== "") {
-                document.getElementById('serverError').textContent = json.error;
-            }
+            document.getElementById('serverError').textContent = json.errorr
             renderContacts(contacts);
         })// Parse the JSON response from the server
         .catch(error => {
