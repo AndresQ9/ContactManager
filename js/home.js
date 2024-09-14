@@ -69,12 +69,25 @@ function renderContacts(filteredContacts) {
 
 // Function to delete a contact by ID
 function deleteContact(contactId) {
-    const contactIndex = contacts.findIndex(contact => contact.id === contactId);
-
-    if (contactIndex !== -1) {
-        contacts.splice(contactIndex, 1);
-        renderContacts(contacts); 
-    }
+    fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContacts.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({userId, contactId})  // Convert the login data to JSON format
+    })
+        .then(response => {
+            //console.log(response.text());
+            return response.json()
+        })// Parse the JSON response from the server
+        .then(json => {
+            console.log(json);
+        })// Parse the JSON response from the server
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('serverError').textContent = json.error;
+        });
+    loadContacts()
 }
 
 // Function to open the "Create Contact" modal
