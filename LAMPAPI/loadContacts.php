@@ -5,6 +5,7 @@
 	$inData = getRequestInfo();
 	$userId = intval($inData["userId"]);
 	$page = intval($inData["page"]);
+	$limit = 10;
 	$offset = 10*($page - 1);
 	$search = '%'.$inData["search"].'%';
 	$searchCount = 0;
@@ -40,7 +41,6 @@
             $stmt = $conn->prepare(
             "SELECT * FROM contacts WHERE userId = ? ORDER BY firstname Limit ? OFFSET ?"
             );
-            $limit = 10;
             $stmt->bind_param("iii", $userId, $limit, $offset);
             $stmt->execute();
             $result = $stmt->get_result();
