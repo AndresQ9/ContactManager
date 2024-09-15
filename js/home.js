@@ -114,6 +114,7 @@ function openCreateModal() {
 
 // Function to close the modal
 function closeModal() {
+    console.log("here");
     document.getElementById('contactModal').style.display = 'none'; 
 }
 
