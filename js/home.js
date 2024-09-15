@@ -89,7 +89,7 @@ function deleteContact() {
             console.error('Error:', error);
             //document.getElementById('serverError').textContent = json.error;
         });
-    loadContacts()
+    reloadContacts();
 }
 
 //Opens modal to confirm deletion of contact
@@ -169,7 +169,7 @@ function submitContact() {
                     throw new Error(json.error);
                 }
                 //document.getElementById('feedback').textContent = 'Contact saved';
-                loadContacts();
+                reloadContacts();
             })
             .catch(error => {
                 console.log(error);
@@ -194,7 +194,7 @@ function submitContact() {
                     throw new Error(json.error);
                 }
                // document.getElementById('feedback').textContent = 'Contact saved';
-                loadContacts();
+                reloadContacts();
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -248,4 +248,13 @@ function loadContacts() {
             document.getElementById('serverError').textContent = json.error;
         });
 
+}
+
+function reloadContacts(){
+    const currentPage = loadData.page;
+    loadData.page = 0;
+    while(loadData.page <= currentPage){
+        loadData.page++;
+        loadContacts();
+    }
 }
