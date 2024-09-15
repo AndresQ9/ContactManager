@@ -216,7 +216,9 @@ function filterContacts() {
 
 function loadMore(){
     loadData.page += 1;
-    loadContacts();
+    if(loadContacts() === "No Records Found"){
+        loadData.page -=1;
+    };
 }
 
 function loadContacts() {
@@ -240,9 +242,9 @@ function loadContacts() {
                 renderContacts(contacts);
             }
             else{
-                loadData.page -= 1;
                 document.getElementById('loadButtonFeedback').textContent = json.error;
                 console.log(loadData.page);
+                return json.error
             }
         })// Parse the JSON response from the server
         .catch(error => {
@@ -250,6 +252,7 @@ function loadContacts() {
             document.getElementById('serverError').textContent = json.error;
         });
 
+    return "";
 }
 
 function reloadContacts(){
