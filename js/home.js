@@ -232,9 +232,15 @@ function loadContacts() {
         })// Parse the JSON response from the server
         .then(json => {
             console.log(json);
-            contacts = json.contacts;
-            document.getElementById('serverError').textContent = json.error;
-            renderContacts(contacts);
+            if(json.error === "") {
+                contacts = json.contacts;
+                document.getElementById('serverError').textContent = json.error;
+                renderContacts(contacts);
+            }
+            else{
+                loadData.page -= 1;
+                document.getElementById('serverError').textContent = json.error;
+            }
         })// Parse the JSON response from the server
         .catch(error => {
             console.error('Error:', error);
