@@ -69,6 +69,7 @@ function renderContacts(filteredContacts) {
 
 // Function to delete a contact by ID
 function deleteContact() {
+    document.getElementById('confirmDelModal').style.display = 'none';
     let contactId = document.getElementById('delContactId').value;
     fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/deleteContact.php', {
         method: 'POST',
@@ -89,7 +90,6 @@ function deleteContact() {
             //document.getElementById('serverError').textContent = json.error;
         });
     loadContacts()
-    document.getElementById('confirmDelModal').style.display = 'none';
 }
 
 //Opens modal to confirm deletion of contact
