@@ -90,6 +90,22 @@ function deleteContact(contactId) {
     loadContacts()
 }
 
+//Opens modal to confirm deletion of contact
+function confirmDelete(contactId) {
+    document.getElementById('confirmDelModal').style.display = 'block';
+    document.getElementById('delContactId').value = contactId;
+}
+
+//Deletes contact if confirmed
+function handleClick(event) {
+    document.getElementById('confirmDelModal').style.display = 'none';
+    let contactId = document.getElementById('delContactId').value;
+    if (event.target.id === "confirmDelete") {
+        deleteContact(contactId);
+    }
+}
+
+
 // Function to open the "Create Contact" modal
 function openCreateModal() {
     editingContactId = null;
@@ -146,6 +162,7 @@ function submitContact() {
                 loadContacts();
             })
             .catch(error => {
+                console.log(error);
                 document.getElementById('feedback').textContent = 'An error occurred try again';
             });
     }
