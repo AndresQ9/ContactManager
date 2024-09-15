@@ -131,7 +131,7 @@ body {
 /* Modal Content */
 .modal-content {
     background-color: #fff;
-    position: relative;
+    position: absolute;
     transform: translate(-50%, -50%);
     padding: 40px;
     border: 3px solid #888;
