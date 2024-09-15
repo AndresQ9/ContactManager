@@ -5,7 +5,7 @@ let page = 1;
 let loadData = {
     userId: userId,
     search: "",
-    page: 0
+    page: 1
 }
 /*const contacts = [
     { id: 1, name: 'John Doe', nickname: 'Johnny', phone: '123-456-7890', email: 'john@example.com' },
