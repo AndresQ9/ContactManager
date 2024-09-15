@@ -174,7 +174,7 @@ body {
     border: 1px solid #ccc;
 }
 
-. #deleteConfirmButton {
+.modal-content #deleteConfirmButton {
     padding: 10px 20px;
     border-color: #007BFF;
     cursor: pointer;
@@ -182,7 +182,17 @@ body {
     font-size: 1rem;
 }
 
-. #cancelConfirmButton {
+.modal-content #cancelConfirmButton {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.modal-content #submitButton {
     padding: 10px 20px;
     background-color: #007BFF;
     color: white;
