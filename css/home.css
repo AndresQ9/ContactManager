@@ -258,6 +258,7 @@ body {
     }
 
     .modal-content {
+        justify-content: center;
         width: 90%;
         margin-left: 5%;
     }
@@ -292,6 +293,7 @@ body {
     }
 
     .modal-content {
+        justify-content: center;
         width: 95%;
         margin: 0 auto;
     }
@@ -312,6 +314,7 @@ body {
     }
 
     .modal-content {
+        justify-content: center;
         width: 100%;
         padding: 20px;
     }
