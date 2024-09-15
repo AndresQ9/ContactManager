@@ -208,22 +208,6 @@ body {
     color: darkred;
 }
 
-.confirmDeleteButton {
-    padding: 12px 20px;
-    background-color: #007AFF;
-    width: 80%;
-    max-width: 280px;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 40px;
-    font-size: 16px;
-    border-radius: 50px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
 @media screen and (max-width: 1440px) {
     .home-container {
         max-width: 1200px;
