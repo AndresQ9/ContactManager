@@ -184,7 +184,7 @@ body {
     font-size: 1rem;
 }
 
-.modal-content #confirmDeleteButton {
+.modal-content #deleteConfirmButton {
     padding: 10px 20px;
     border-color: #007BFF;
     cursor: pointer;
