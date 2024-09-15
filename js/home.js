@@ -208,8 +208,8 @@ function submitContact() {
 // Function to filter contacts based on search query
 function filterContacts() {
     loadData.search = document.getElementById('searchBar').value.toLowerCase();
-    console.log(loadData);
     loadData.page = 1;
+    console.log(loadData);
     document.getElementById('contactGrid').innerHTML = '';
     loadContacts();
     //renderContacts(filteredContacts);
