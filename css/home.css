@@ -226,6 +226,10 @@ body {
     color: darkred;
 }
 
+.feedback{
+    color: red;
+}
+
 @media screen and (max-width: 1440px) {
     .home-container {
         max-width: 1200px;
