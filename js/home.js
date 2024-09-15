@@ -5,7 +5,7 @@ let page = 1;
 let loadData = {
     userId: userId,
     search: "",
-    page: 1
+    page: 0
 }
 /*const contacts = [
     { id: 1, name: 'John Doe', nickname: 'Johnny', phone: '123-456-7890', email: 'john@example.com' },
@@ -214,6 +214,7 @@ function filterContacts() {
 }
 
 function loadContacts() {
+    loadData.page += 1;
     fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContacts.php', {
         method: 'POST',
         headers: {
