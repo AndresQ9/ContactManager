@@ -139,6 +139,12 @@ function submitContact() {
         email: document.getElementById('email').value,
         userId: userId // Include the userId in the contact data
     };
+
+    if(Object.values(contactData).some(value => value !== '')){
+        document.getElementById('feedback').textContent = 'Must enter at least one field';
+        return
+    }
+
     closeModal();
     if((document.getElementById('modalTitle').textContent === 'Create a New Contact')) {
         fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/saveContact.php', {
