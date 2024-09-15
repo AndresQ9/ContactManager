@@ -209,7 +209,7 @@ function submitContact() {
 function filterContacts() {
     loadData.search = document.getElementById('searchBar').value.toLowerCase();
     console.log(loadData);
-    loadContacts();
+    reloadContacts();
     //renderContacts(filteredContacts);
 }
 
