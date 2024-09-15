@@ -240,6 +240,7 @@ function loadContacts() {
             else{
                 loadData.page -= 1;
                 document.getElementById('serverError').textContent = json.error;
+                console.log(loadData.page);
             }
         })// Parse the JSON response from the server
         .catch(error => {
