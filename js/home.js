@@ -218,7 +218,7 @@ function loadMore(){
     loadData.page += 1;
     if(loadContacts() === "No Records Found"){
         loadData.page -=1;
-    };
+    }
 }
 
 function loadContacts() {
