@@ -140,7 +140,7 @@ function submitContact() {
         userId: userId // Include the userId in the contact data
     };
 
-    if(contactData.name === '' ||
+    if(contactData.firstName === '' ||
         contactData.lastName === '' ||
         contactData.phone === '' ||
         contactData.email === ''){
@@ -200,6 +200,7 @@ function submitContact() {
                 document.getElementById('feedback').textContent = 'An error occurred try again';
             });
     }
+    document.getElementById('feedback').textContent = '';
 }
 
 
