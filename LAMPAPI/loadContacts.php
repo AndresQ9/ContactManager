@@ -17,7 +17,7 @@
 	else{
                             //if there's a search
         if( $inData["search"] != ""){
-            $stmt = $conn->prepare("SELECT * FROM contacts WHERE userId = ? AND (firstname LIKE ? OR lastname LIKE ? OR email LIKE ? OR phone LIKE ?)");
+            $stmt = $conn->prepare("SELECT * FROM contacts WHERE userId = ? AND (firstname LIKE ? OR lastname LIKE ? OR email LIKE ? OR phone LIKE ?) Limit ? OFFSET ?");
             $stmt->bind_param("issss", $userId, $search, $search, $search, $search);
             $stmt->execute();
             $result = $stmt->get_result();
