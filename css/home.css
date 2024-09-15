@@ -182,7 +182,7 @@ body {
     font-size: 1rem;
 }
 
-.modal-content form button {
+.modal-content #cancelConfirmButton {
     padding: 10px 20px;
     background-color: #007BFF;
     color: white;
