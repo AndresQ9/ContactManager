@@ -53,7 +53,7 @@ function renderContacts(filteredContacts) {
             deleteButton.classList.add('delete-button');
             deleteButton.onclick = function (event) {
                 event.stopPropagation();
-                deleteContact(contact.id);
+                confirmDelete(contact.id);
             };
 
             contactCard.appendChild(contactName);
