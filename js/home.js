@@ -234,6 +234,7 @@ function loadContacts() {
             console.log(json);
             if(json.error === "") {
                 contacts = json.contacts;
+                document.getElementById('loadButtonFeedback').textContent = json.error;
                 document.getElementById('serverError').textContent = json.error;
                 renderContacts(contacts);
             }
