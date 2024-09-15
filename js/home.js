@@ -130,6 +130,7 @@ function openEditModal(contact) {
 
 // Function to submit the contact from the modal form
 function submitContact() {
+    closeModal();
     const contactData = {
         contactId: editingContactId,
         firstName: document.getElementById('name').value,
