@@ -140,7 +140,10 @@ function submitContact() {
         userId: userId // Include the userId in the contact data
     };
 
-    if(Object.values(contactData).some(value => value !== '')){
+    if(contactData.name === '' ||
+        contactData.lastName === '' ||
+        contactData.phone === '' ||
+        contactData.email === ''){
         document.getElementById('feedback').textContent = 'Must enter at least one field';
         return
     }
