@@ -210,6 +210,7 @@ function filterContacts() {
     loadData.search = document.getElementById('searchBar').value.toLowerCase();
     console.log(loadData);
     loadData.page = 1;
+    document.getElementById('contactGrid').innerHTML = '';
     loadContacts();
     //renderContacts(filteredContacts);
 }
