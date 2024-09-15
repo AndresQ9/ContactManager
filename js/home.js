@@ -25,7 +25,7 @@ window.onload = function() {loadContacts()};
 // Function to render contact cards
 function renderContacts(filteredContacts) {
     const contactGrid = document.getElementById('contactGrid');
-    contactGrid.innerHTML = '';
+    //contactGrid.innerHTML = '';
 
     if (filteredContacts != null) {
         filteredContacts.forEach(contact => {
@@ -213,8 +213,12 @@ function filterContacts() {
     //renderContacts(filteredContacts);
 }
 
-function loadContacts() {
+function loadMore(){
     loadData.page += 1;
+    loadContacts();
+}
+
+function loadContacts() {
     fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContacts.php', {
         method: 'POST',
         headers: {
