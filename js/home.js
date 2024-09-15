@@ -89,6 +89,7 @@ function deleteContact() {
             //document.getElementById('serverError').textContent = json.error;
         });
     loadContacts()
+    document.getElementById('confirmDelModal').style.display = 'none';
 }
 
 //Opens modal to confirm deletion of contact
