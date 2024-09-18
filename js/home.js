@@ -60,6 +60,10 @@ function renderContacts(filteredContacts) {
             saveButton.textContent = '✓';
             saveButton.classList.add('save-button');
             saveButton.title = 'Save';
+            deleteButton.onclick = function (event) {
+                event.stopPropagation();
+                submitContact(contact.id);
+            };
 
             contactCard.appendChild(contactName);
             contactCard.appendChild(contactNickname);
