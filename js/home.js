@@ -148,9 +148,7 @@ function submitContact(id) {
         document.getElementById('feedback').textContent = 'Must enter at least one field';
         return
     }
-
-    closeModal();
-    if((document.getElementById('modalTitle').textContent === 'Create a New Contact')) {
+    if(id === 'create') {
         fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/saveContact.php', {
             method: 'POST',
             headers: {
@@ -176,7 +174,7 @@ function submitContact(id) {
                 //document.getElementById('feedback').textContent = 'An error occurred try again';
             });
     }
-    else if(document.getElementById('modalTitle').textContent === 'Edit Contact'){
+    else{
         console.log(contactData);
         fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/EditContact.php', {
             method: 'POST',
