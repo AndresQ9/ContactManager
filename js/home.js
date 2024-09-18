@@ -56,13 +56,15 @@ function renderContacts(filteredContacts) {
                 confirmDelete(contact.id);
             };
             const saveButton = document.createElement('button');
-            deleteButton.textContent = '✓';
+            saveButton.textContent = '✓';
+            deleteButton.classList.add('delete-button');
 
             contactCard.appendChild(contactName);
             contactCard.appendChild(contactNickname);
             contactCard.appendChild(contactPhone);
             contactCard.appendChild(contactEmail);
             contactCard.appendChild(deleteButton);
+            contactCard.appendChild(saveButtonButton);
 
             contactGrid.appendChild(contactCard);
         });
