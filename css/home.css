@@ -17,6 +17,8 @@ body {
 }
 
 .js-flash-alert-contactcard{
+    position: absolute;
+    bottom: 0;
     color: red;
 }
 
