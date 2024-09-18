@@ -57,7 +57,7 @@ function renderContacts(filteredContacts) {
             };
             const saveButton = document.createElement('button');
             saveButton.textContent = '✓';
-            deleteButton.classList.add('delete-button');
+            saveButton.classList.add('save-button');
 
             contactCard.appendChild(contactName);
             contactCard.appendChild(contactNickname);
