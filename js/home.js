@@ -32,9 +32,9 @@ function renderContacts(filteredContacts) {
             const contactCard = document.createElement('div');
             contactCard.classList.add('contact-card');
 
-            contactCard.onclick = function () {
+            /*contactCard.onclick = function () {
                 openEditModal(contact);
-            }
+            }*/
 
             const contactName = document.createElement('h3');
             contactName.innerHTML = `<input id=${contact.id + 'Name'} class="contact-input-header" placeholder=${contact.firstName}>`;
