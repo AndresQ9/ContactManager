@@ -51,7 +51,7 @@ function renderContacts(filteredContacts) {
             const deleteButton = document.createElement('button');
             deleteButton.textContent = '×';
             const saveButton = document.createElement('button');
-            deleteButton.textContent = '✓';
+            saveButton.textContent = '✓';
             deleteButton.classList.add('saveButton');
             deleteButton.onclick = function (event) {
                 event.stopPropagation();
