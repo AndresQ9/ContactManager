@@ -59,8 +59,9 @@
   <script src="../js/home.js"></script>
   </div>
   <script>
+    const dropdown = document.querySelector('.dropdown-content');
+    dropdown.style.display = 'none';
     function toggleCreateDropdown() {
-      const dropdown = document.querySelector('.dropdown-content');
       if (dropdown.style.display === 'block') {
         dropdown.style.display = 'none';
       } else {
