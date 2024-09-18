@@ -253,8 +253,6 @@ body {
 
     .create-contact-button {
         width: 70%;
-        max-width: 240px;
-        font-size: 14px;
     }
 
     .modal-content {
