@@ -283,7 +283,7 @@ body {
     cursor: pointer;
 }
 
-.delete-button {
+.save-button {
     position: absolute;
     top: 10px;
     right: 10px;
