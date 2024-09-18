@@ -37,7 +37,7 @@ function renderContacts(filteredContacts) {
             }
 
             const contactName = document.createElement('h3');
-            contactName.innerHTML = `<input id=${contact.id + 'Nickname'} class="contact-input-header" placeholder=${contact.lastName}>`;
+            contactName.innerHTML = `<input id=${contact.id + 'Name'} class="contact-input-header" placeholder=${contact.lastName}>`;
 
             const contactNickname = document.createElement('p');
             contactNickname.innerHTML = `<strong>Last Name:</strong> <input id=${contact.id + 'Nickname'} class="contact-input" placeholder=${contact.lastName}>`;
