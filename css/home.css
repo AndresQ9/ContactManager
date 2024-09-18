@@ -48,6 +48,8 @@ body {
 .create-contact-button {
     padding: 12px 20px;
     background-color: #007AFF;
+    width: 80%;
+    max-width: 280px;
     color: white;
     border: none;
     cursor: pointer;
