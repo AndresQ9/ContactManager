@@ -258,7 +258,7 @@ function reloadContacts(){
     document.getElementById('contactGrid').innerHTML = '';
     const currentPage = loadData.page;
     loadData.page = 0;
-    while(loadData.page <= currentPage){
+    while(loadData.page < currentPage){
         loadData.page++;
         loadContacts();
     }
