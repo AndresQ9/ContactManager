@@ -7,6 +7,10 @@ body {
     color: #333; 
 }
 
+.contact-input{
+    border:none
+}
+
 .js-flash-alert{
     color: red;
 }
