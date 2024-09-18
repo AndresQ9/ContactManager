@@ -46,7 +46,7 @@ function renderContacts(filteredContacts) {
             contactPhone.innerHTML = `<strong>Phone:</strong> <input id=${contact.id + 'Phone'} class="contact-input" placeholder=${contact.phone}>`;
 
             const contactEmail = document.createElement('p');
-            contactEmail.innerHTML = `<strong>Email:</strong> < id=${contact.id + 'Email'} class="contact-input" placeholder=${contact.email}>`;
+            contactEmail.innerHTML = `<strong>Email:</strong> <input id=${contact.id + 'Email'} class="contact-input" placeholder=${contact.email}>`;
 
             const deleteButton = document.createElement('button');
             deleteButton.textContent = '×';
