@@ -141,11 +141,9 @@ function submitContact(id) {
         userId: userId // Include the userId in the contact data
     };
 
-    if(contactData.firstName === '' &&
-        contactData.lastName === '' &&
-        contactData.phone === '' &&
-        contactData.email === ''){
-        document.getElementById('feedback').textContent = 'Must enter at least one field';
+    if(contactData.firstName === '' ||
+        contactData.phone === ''){
+        document.getElementById('feedback').textContent = 'Must have at least name and number';
         return
     }
     if(id === 'create') {
