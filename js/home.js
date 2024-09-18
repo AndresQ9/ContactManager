@@ -142,7 +142,6 @@ function closeModal() {
 
 // Function to submit the contact from the modal form
 function submitContact(id) {
-    console.log("trying to save");
     const contactData = {
         contactId: editingContactId,
         firstName: document.getElementById(id+'Name').value,
@@ -152,6 +151,7 @@ function submitContact(id) {
         userId: userId // Include the userId in the contact data
     };
 
+    console.log(contactData);
     if(contactData.firstName === '' ||
         contactData.phone === ''){
         document.getElementById('feedback').textContent = 'Must have at least name and number';
