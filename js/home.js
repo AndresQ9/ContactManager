@@ -74,6 +74,7 @@ function renderContacts(filteredContacts) {
             contactCard.appendChild(contactEmail);
             contactCard.appendChild(deleteButton);
             contactCard.appendChild(saveButton);
+            contactCard.appendChild(feedback);
 
             contactGrid.appendChild(contactCard);
         });
