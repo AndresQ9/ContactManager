@@ -51,6 +51,7 @@ function renderContacts(filteredContacts) {
             const deleteButton = document.createElement('button');
             deleteButton.textContent = '×';
             deleteButton.classList.add('delete-button');
+            deleteButton.title = 'Delete';
             deleteButton.onclick = function (event) {
                 event.stopPropagation();
                 confirmDelete(contact.id);
@@ -58,6 +59,7 @@ function renderContacts(filteredContacts) {
             const saveButton = document.createElement('button');
             saveButton.textContent = '✓';
             saveButton.classList.add('save-button');
+            saveButton.title = 'Save';
 
             contactCard.appendChild(contactName);
             contactCard.appendChild(contactNickname);
