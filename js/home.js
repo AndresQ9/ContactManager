@@ -142,6 +142,7 @@ function closeModal() {
 
 // Function to submit the contact from the modal form
 function submitContact(id) {
+    console.log("trying to save");
     const contactData = {
         contactId: editingContactId,
         firstName: document.getElementById(id+'Name').value,
