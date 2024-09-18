@@ -141,13 +141,6 @@ body {
     border-radius: 10px;
 }
 
-.dropdown-content {
-    background-color: #fff;
-    padding: 40px;
-    border: 3px solid #888;
-    border-radius: 10px;
-}
-
 /* The Close Button */
 .close {
     color: #aaa;
@@ -214,6 +207,71 @@ body {
 }
 
 .modal-content h2 {
+    color: #007BFF;
+}
+
+.dropdown-content-content {
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    border: 3px solid #888;
+    width: 700px;
+    border-radius: 10px;
+}
+
+.dropdown-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dropdown-content form label {
+    font-size: 1.1rem;
+}
+
+.dropdown-content form input {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.dropdown-content #deleteConfirmButton {
+    padding: 10px 20px;
+    border-color: #007BFF;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.dropdown-content #cancelConfirmButton {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.dropdown-content #submitButton {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.dropdown-content form button:hover {
+    background-color: #0056b3;
+}
+
+.dropdown-content h2 {
     color: #007BFF;
 }
 
