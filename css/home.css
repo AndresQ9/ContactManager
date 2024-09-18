@@ -283,7 +283,7 @@ body {
 .delete-button {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 15px;
     background-color: transparent;
     color: red;
     border: none;
@@ -295,7 +295,7 @@ body {
 .save-button {
     position: absolute;
     bottom: 10px;
-    right: 10px;
+    right: 15px;
     background-color: transparent;
     color: lightgreen;
     border: none;
