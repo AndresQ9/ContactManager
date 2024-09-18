@@ -50,20 +50,19 @@ function renderContacts(filteredContacts) {
 
             const deleteButton = document.createElement('button');
             deleteButton.textContent = '×';
-            const saveButton = document.createElement('button');
-            saveButton.textContent = '✓';
-            deleteButton.classList.add('deleteButton');
+            deleteButton.classList.add('delete-button');
             deleteButton.onclick = function (event) {
                 event.stopPropagation();
                 confirmDelete(contact.id);
             };
+            const saveButton = document.createElement('button');
+            deleteButton.textContent = '✓';
 
             contactCard.appendChild(contactName);
             contactCard.appendChild(contactNickname);
             contactCard.appendChild(contactPhone);
             contactCard.appendChild(contactEmail);
             contactCard.appendChild(deleteButton);
-            contactCard.appendChild(saveButton);
 
             contactGrid.appendChild(contactCard);
         });
