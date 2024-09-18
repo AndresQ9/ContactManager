@@ -16,6 +16,10 @@ body {
     color: red;
 }
 
+.js-flash-alert-contactcard{
+    color: red;
+}
+
 .feedback {
     justify-content: center;
     align-items: center;

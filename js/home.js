@@ -49,7 +49,7 @@ function renderContacts(filteredContacts) {
             contactEmail.innerHTML = `<strong>Email:</strong> <input id=${contact.id + 'Email'} class="contact-input" value=${contact.email}>`;
 
             const feedback = document.createElement('p');
-            feedback.innerHTML `<i class="js-flash-alert-contactcard" id=${contact.id + 'feedback'}></i>`
+            feedback.innerHTML = `<i class="js-flash-alert-contactcard" id=${contact.id + 'feedback'}></i>`
 
             const deleteButton = document.createElement('button');
             deleteButton.textContent = '×';
