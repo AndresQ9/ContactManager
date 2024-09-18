@@ -8,7 +8,8 @@ body {
 }
 
 .contact-input{
-    border:none
+    border:none;
+    font-size: larger;
 }
 
 .js-flash-alert{
