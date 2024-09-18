@@ -157,8 +157,8 @@ function submitContact(id) {
 
     console.log(contactData);
     if(contactData.firstName === '' ||
-        contactData.phone === ''){
-        document.getElementById(id+'feedback').textContent = 'Must have at least name and number';
+        contactData.email === ''){
+        document.getElementById(id+'feedback').textContent = 'Must have at least name and email';
         return
     }
     if(id === 'create') {
