@@ -1,10 +1,10 @@
 body {
-    font-family: 'San Francisco', 'Poppins', sans-serif; 
-    background-color: #F7F7F7; 
+    font-family: 'San Francisco', 'Poppins', sans-serif;
+    background-color: #F7F7F7;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #333; 
+    color: #333;
 }
 
 .contact-input{
@@ -36,18 +36,18 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 1600px; 
+    max-width: 1600px;
     margin: 0 auto; /* Center the content */
 }
 
 .search-bar {
     padding: 15px;
     width: 80%;
-    max-width: 600px; 
+    max-width: 600px;
     margin-bottom: 20px;
-    border-radius: 20px; 
+    border-radius: 20px;
     border: none;
-    background-color: #ffffff; 
+    background-color: #ffffff;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
     font-size: 16px;
     text-align: center;
@@ -55,7 +55,7 @@ body {
 }
 
 .search-bar:hover {
-    transform: scale(1.02); 
+    transform: scale(1.02);
 }
 
 .create-contact-button {
@@ -69,8 +69,8 @@ body {
     margin-top: 10px;
     margin-bottom: 40px;
     font-size: 16px;
-    border-radius: 50px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -99,18 +99,20 @@ body {
     margin-bottom: 10px; /* Space between cards */
     display: flex; /* Align content horizontally */
     align-items: center;
-    justify-content: space-between; 
-    border-bottom: 1px solid #eaeaea; 
+    justify-content: space-between;
+    border-bottom: 1px solid #eaeaea;
     border-left: 6px solid #007BFF;
 }
 
 .contact-card:hover input {
-    border: 2px solid #007BFF; /* Change border color on hover */
-    outline: none; /* Remove default outline */
+    border: none;
+    border-bottom: 2px solid #007BFF;
+    outline: none;
+    box-shadow: none;
+    caret-color: black;
 }
-
 .contact-card:hover {
-    transform: scale(1.02); 
+    transform: scale(1.02);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -178,13 +180,13 @@ body {
     cursor: pointer;
 }
 
-  
+
 .modal-content form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
-  
+
 .modal-content form label {
     font-size: 1.1rem;
 }
@@ -234,10 +236,9 @@ body {
 
 .dropdown-content {
     background-color: #fff;
-    padding: 2px;
-    border: 3px solid #888;
-    width: 700px;
-    border-radius: 10px;
+    padding: 50px;
+    width: 800px;
+    border-radius: 50px;
 }
 
 .dropdown-content form {
@@ -251,9 +252,9 @@ body {
 }
 
 .dropdown-content form input {
-    padding: 2px;
+    padding: 10px;
     font-size: 1rem;
-    border-radius: 5px;
+    border-radius: 20px;
     border: 1px solid #ccc;
 }
 
@@ -281,7 +282,7 @@ body {
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 1rem;
 }
 
@@ -291,6 +292,8 @@ body {
 
 .dropdown-content h2 {
     color: #007BFF;
+    position: relative;
+    font-size: 35px;
 }
 
 .delete-button {
@@ -332,27 +335,30 @@ body {
 @media screen and (max-width: 1440px) {
     .home-container {
         max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
     }
 
     .contact-grid {
         width: 100%;
+        justify-items: center;
+        margin: 0 auto;
     }
 
-    .contact-card h3 {
-        font-size: 1.5rem;
-    }
-
-    .contact-card p {
-        font-size: 1rem;
+    .contact-card {
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .search-bar {
         max-width: 500px;
+        margin: 0 auto;
     }
 
     .create-contact-button {
         width: 70%;
         max-width: 240px;
+        margin: 0 auto;
         font-size: 14px;
     }
 
