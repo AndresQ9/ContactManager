@@ -52,7 +52,7 @@ function renderContacts(filteredContacts) {
             deleteButton.textContent = '×';
             const saveButton = document.createElement('button');
             saveButton.textContent = '✓';
-            saveButton.classList.add('saveButton');
+            deleteButton.classList.add('deleteButton');
             deleteButton.onclick = function (event) {
                 event.stopPropagation();
                 confirmDelete(contact.id);
