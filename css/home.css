@@ -103,10 +103,15 @@ body {
 
 /* Contact card heading */
 .contact-input-header {
-    margin-top: 30px;
+    border:none;
+    margin-top: 20px;
     font-size: 2rem;
     font-weight: 600;
     color: #007BFF;
+}
+.contact-input-header::placeholder {
+    color: #007BFF;
+    opacity: 1;
 }
 
 /* Contact card paragraph */
