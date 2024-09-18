@@ -253,7 +253,7 @@ body {
     font-size: 1rem;
 }
 
-.dropdown-content #submitButton {
+.dropdown-content form #submitButton {
     padding: 10px 20px;
     background-color: #007BFF;
     color: white;
