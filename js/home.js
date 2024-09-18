@@ -48,6 +48,9 @@ function renderContacts(filteredContacts) {
             const contactEmail = document.createElement('p');
             contactEmail.innerHTML = `<strong>Email:</strong> <input id=${contact.id + 'Email'} class="contact-input" value=${contact.email}>`;
 
+            const feedback = document.createElement('p');
+            feedback.innerHTML `<i class="js-flash-alert-contactcard" id=${contact.id + 'feedback'}></i>`
+
             const deleteButton = document.createElement('button');
             deleteButton.textContent = '×';
             deleteButton.classList.add('delete-button');
@@ -154,7 +157,7 @@ function submitContact(id) {
     console.log(contactData);
     if(contactData.firstName === '' ||
         contactData.phone === ''){
-        document.getElementById('feedback').textContent = 'Must have at least name and number';
+        document.getElementById(id+'feedback').textContent = 'Must have at least name and number';
         return
     }
     if(id === 'create') {
