@@ -131,13 +131,13 @@ function openEditModal(contact) {
 }
 
 // Function to submit the contact from the modal form
-function submitContact() {
+function submitContact(id) {
     const contactData = {
         contactId: editingContactId,
-        firstName: document.getElementById('name').value,
-        lastName: document.getElementById('nickname').value,  // Assuming 'nickname' is actually 'lastName'
-        phone: document.getElementById('phone').value,
-        email: document.getElementById('email').value,
+        firstName: document.getElementById(id+'Name').value,
+        lastName: document.getElementById(id+'Nickname').value,  // Assuming 'nickname' is actually 'lastName'
+        phone: document.getElementById(id+'Phone').value,
+        email: document.getElementById(id+'Email').value,
         userId: userId // Include the userId in the contact data
     };
 
