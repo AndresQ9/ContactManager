@@ -12,10 +12,6 @@
     <input type="text" id="searchBar" placeholder="Search Contacts" oninput="filterContacts()" class="search-bar">
     <button class="create-contact-button" onclick="openCreateModal()">Create</button>
     <span role="alert" class="js-flash-alert" id="serverError"></span>
-    <!-- Contact grid where the contact cards will be rendered -->
-    <div class="contact-grid" id="contactGrid"></div>
-    <button class="create-contact-button" onclick="loadMore()">load more</button>
-    <span id="loadButtonFeedback" class="feedback"></span>
 
     <!-- Dropdown menu for Create Contact -->
     <div class="dropdown">
@@ -39,6 +35,11 @@
         </form>
       </div>
     </div>
+
+    <!-- Contact grid where the contact cards will be rendered -->
+    <div class="contact-grid" id="contactGrid"></div>
+    <button class="create-contact-button" onclick="loadMore()">load more</button>
+    <span id="loadButtonFeedback" class="feedback"></span>
 
 
   <div id="confirmDelModal" class="modal">
