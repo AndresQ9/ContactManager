@@ -50,7 +50,9 @@ function renderContacts(filteredContacts) {
 
             const deleteButton = document.createElement('button');
             deleteButton.textContent = '×';
-            deleteButton.classList.add('delete-button');
+            const saveButton = document.createElement('button');
+            deleteButton.textContent = '✓';
+            deleteButton.classList.add('saveButton');
             deleteButton.onclick = function (event) {
                 event.stopPropagation();
                 confirmDelete(contact.id);
@@ -61,6 +63,7 @@ function renderContacts(filteredContacts) {
             contactCard.appendChild(contactPhone);
             contactCard.appendChild(contactEmail);
             contactCard.appendChild(deleteButton);
+            contactCard.appendChild(saveButton);
 
             contactGrid.appendChild(contactCard);
         });
