@@ -19,7 +19,7 @@ body {
 .js-flash-alert-contactcard{
     position: absolute;
     bottom: 0;
-    right 50%;
+    right: 50%;
     color: red;
 }
 
