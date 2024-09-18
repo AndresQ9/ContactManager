@@ -37,16 +37,16 @@ function renderContacts(filteredContacts) {
             }*/
 
             const contactName = document.createElement('h3');
-            contactName.innerHTML = `<input id=${contact.id + 'Name'} class="contact-input-header" >${contact.firstName}</input>`;
+            contactName.innerHTML = `<input id=${contact.id + 'Name'} class="contact-input-header" value=${contact.firstName}>`;
 
             const contactNickname = document.createElement('p');
-            contactNickname.innerHTML = `<strong>Last Name:</strong> <input id=${contact.id + 'Nickname'} class="contact-input" >${contact.lastName}</input>`;
+            contactNickname.innerHTML = `<strong>Last Name:</strong> <input id=${contact.id + 'Nickname'} class="contact-input" value=${contact.lastName}>`;
 
             const contactPhone = document.createElement('p');
-            contactPhone.innerHTML = `<strong>Phone:</strong> <input id=${contact.id + 'Phone'} class="contact-input" >${contact.phone}</input>`;
+            contactPhone.innerHTML = `<strong>Phone:</strong> <input id=${contact.id + 'Phone'} class="contact-input" value=${contact.phone}>`;
 
             const contactEmail = document.createElement('p');
-            contactEmail.innerHTML = `<strong>Email:</strong> <input id=${contact.id + 'Email'} class="contact-input">${contact.email}</input>`;
+            contactEmail.innerHTML = `<strong>Email:</strong> <input id=${contact.id + 'Email'} class="contact-input" value=${contact.email}>`;
 
             const deleteButton = document.createElement('button');
             deleteButton.textContent = '×';
