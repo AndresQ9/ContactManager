@@ -40,7 +40,7 @@ function renderContacts(filteredContacts) {
             contactName.textContent = contact.firstName;
 
             const contactNickname = document.createElement('p');
-            contactNickname.innerHTML = `<strong>Last Name:</strong> <input placeholder="${contact.lastName}"></input>`;
+            contactNickname.innerHTML = `<strong>Last Name:</strong> <input placeholder=${contact.lastName}></input>`;
 
             const contactPhone = document.createElement('p');
             contactPhone.innerHTML = `<strong>Phone:</strong> ${contact.phone}`;
