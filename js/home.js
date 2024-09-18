@@ -129,7 +129,7 @@ function closeModal() {
     document.getElementById('contactModal').style.display = 'none'; 
 }
 
-function openEditModal(contact) {
+/*function openEditModal(contact) {
     editingContactId = contact.id;
     document.getElementById('modalTitle').textContent = 'Edit Contact';
     document.getElementById('contactId').value = contact.id;
@@ -138,7 +138,7 @@ function openEditModal(contact) {
     document.getElementById('phone').value = contact.phone;
     document.getElementById('email').value = contact.email;
     document.getElementById('contactModal').style.display = 'block';
-}
+}*/
 
 // Function to submit the contact from the modal form
 function submitContact(id) {
