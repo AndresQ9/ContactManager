@@ -236,7 +236,10 @@ body {
 
 .dropdown-content {
     background-color: #fff;
-    padding: 50px;
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
     width: 800px;
     border-radius: 50px;
     margin-bottom: 20px;
@@ -367,6 +370,18 @@ body {
         width: 90%;
         margin-left: 5%;
     }
+
+    .dropdown-content {
+        background-color: #fff;
+        padding-top: 20px;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 50px;
+        width: 800px;
+        border-radius: 50px;
+        margin: 30px auto;
+    }
+
 }
 
 @media screen and (max-width: 900px) {
