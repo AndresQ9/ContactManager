@@ -7,6 +7,7 @@ let loadData = {
     search: "",
     page: 1
 }
+let origColor = null;
 /*const contacts = [
     { id: 1, name: 'John Doe', nickname: 'Johnny', phone: '123-456-7890', email: 'john@example.com' },
     { id: 2, name: 'Jane Smith', nickname: 'Janey', phone: '987-654-3210', email: 'jane@example.com' },
@@ -156,12 +157,42 @@ function submitContact(id) {
     };
 
     console.log(contactData);
-    if(contactData.firstName === '' ||
-        contactData.email === ''){
-        document.getElementById(id+'feedback').textContent = 'Must have at least name and email';
+    //Set border and shadow color red if required input is empty & undo when filled
+    let name = document.getElementById('createName');
+    let email = document.getElementById('createEmail');
+
+    if (contactData.firstName === '' ||
+        contactData.email === '') {
+        document.getElementById(id + 'feedback').textContent = 'Must have at least first name and email';
+
+        if (contactData.firstName === '') {
+            name.style.borderColor = 'red';
+            name.style.boxShadow = '0px 0px 5px red';
+        } else {
+            name.style.borderColor = origColor;
+            name.style.boxShadow = 'none';
+        }
+
+        if (contactData.email === '') {
+            email.style.borderColor = 'red';
+            email.style.boxShadow = '0px 0px 5px red';
+        } else{
+            email.style.borderColor = origColor;
+            email.style.boxShadow = 'none';
+        }
         return
     }
-    if(id === 'create') {
+
+    if (contactData.firstName !== '') {
+        name.style.borderColor = origColor;
+        name.style.boxShadow = 'none';
+    }
+    if (contactData.email !== '') {
+        email.style.borderColor = origColor;
+        email.style.boxShadow = 'none';
+    }
+
+    if (id === 'create') {
         fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/saveContact.php', {
             method: 'POST',
             headers: {
@@ -233,7 +264,19 @@ function loadMore(){
     }
 }
 
+function welcomeUser() {
+    let userId = loadData.userId;
+    origColor = document.getElementById('createName').style.borderBlockColor;
+    //let userId = document.cookie.split("; ").find((row) => row.startsWith("userId="))?.split("=")[1];
+    if (typeof userId === 'undefined') {
+        document.getElementById('welcomeUser').innerHTML = 'Welcome User, you are not signed in. Please <a href ="login.html">sign in here</a>';
+    } else {
+        document.getElementById('welcomeUser').textContent = 'Welcome to your contacts manager, User ' + userId;
+    }
+}
+
 function loadContacts() {
+    welcomeUser();
     fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContacts.php', {
         method: 'POST',
         headers: {
@@ -275,4 +318,13 @@ function reloadContacts(){
         loadData.page++;
         loadContacts();
     }
+}
+
+//Log out from site and return to sign in
+function logOut() {
+    userId = 0;
+    firstName = "";
+    lastName = "";
+    document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    window.location.href = "index.html";
 }
