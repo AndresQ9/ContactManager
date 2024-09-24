@@ -1,6 +1,14 @@
 let editingContactId = null;
-
-const contacts = [
+let contacts = [];
+let userId = document.cookie.split("; ").find((row) => row.startsWith("userId="))?.split("=")[1];
+let page = 1;
+let loadData = {
+    userId: userId,
+    search: "",
+    page: 1
+}
+let origColor = null;
+/*const contacts = [
     { id: 1, name: 'John Doe', nickname: 'Johnny', phone: '123-456-7890', email: 'john@example.com' },
     { id: 2, name: 'Jane Smith', nickname: 'Janey', phone: '987-654-3210', email: 'jane@example.com' },
     { id: 3, name: 'Mike Johnson', nickname: 'Mikey', phone: '555-555-5555', email: 'mike@example.com' },
@@ -10,63 +18,106 @@ const contacts = [
     { id: 5, name: 'Bob Jones', nickname: 'Bobby', phone: '555-987-6543', email: 'bob@example.com' },
     { id: 5, name: 'Bob Jones', nickname: 'Bobby', phone: '555-987-6543', email: 'bob@example.com' },
     { id: 5, name: 'Bob Jones', nickname: 'Bobby', phone: '555-987-6543', email: 'bob@example.com' },
-];
+];*/
+
+window.onload = function () { loadContacts() };
+
 
 // Function to render contact cards
 function renderContacts(filteredContacts) {
     const contactGrid = document.getElementById('contactGrid');
-    contactGrid.innerHTML = ''; 
+    //contactGrid.innerHTML = '';
 
-    // Sort the filtered contacts alphabetically by name
-    filteredContacts.sort((a, b) => a.name.localeCompare(b.name));
+    if (filteredContacts != null) {
+        filteredContacts.forEach(contact => {
+            const contactCard = document.createElement('div');
+            contactCard.classList.add('contact-card');
 
-    filteredContacts.forEach(contact => {
-        const contactCard = document.createElement('div');
-        contactCard.classList.add('contact-card');
+            /*contactCard.onclick = function () {
+                openEditModal(contact);
+            }*/
 
-        contactCard.onclick = function() {
-            openEditModal(contact);
-        }
+            const contactName = document.createElement('h3');
+            contactName.innerHTML = `<input id=${contact.id + 'Name'} class="contact-input-header" value=${contact.firstName}>`;
 
-        const contactName = document.createElement('h3');
-        contactName.textContent = contact.name;
+            const contactNickname = document.createElement('p');
+            contactNickname.innerHTML = `<strong>Last Name:</strong> <input id=${contact.id + 'Nickname'} class="contact-input" value=${contact.lastName}>`;
 
-        const contactNickname = document.createElement('p');
-        contactNickname.innerHTML = `<strong>Nickname:</strong> ${contact.nickname}`;
+            const contactPhone = document.createElement('p');
+            contactPhone.innerHTML = `<strong>Phone:</strong> <input id=${contact.id + 'Phone'} class="contact-input" value=${contact.phone}>`;
 
-        const contactPhone = document.createElement('p');
-        contactPhone.innerHTML = `<strong>Phone:</strong> ${contact.phone}`;
+            const contactEmail = document.createElement('p');
+            contactEmail.innerHTML = `<strong>Email:</strong> <input id=${contact.id + 'Email'} class="contact-input" value=${contact.email}>`;
 
-        const contactEmail = document.createElement('p');
-        contactEmail.innerHTML = `<strong>Email:</strong> ${contact.email}`;
+            const feedback = document.createElement('p');
+            feedback.innerHTML = `<i class="js-flash-alert-contactcard" id=${contact.id + 'feedback'}></i>`
 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = '×';
-        deleteButton.classList.add('delete-button');
-        deleteButton.onclick = function(event) {
-            event.stopPropagation();
-            deleteContact(contact.id); 
-        };
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = '×';
+            deleteButton.classList.add('delete-button');
+            deleteButton.title = 'Delete';
+            deleteButton.onclick = function (event) {
+                event.stopPropagation();
+                confirmDelete(contact.id);
+            };
+            const saveButton = document.createElement('button');
+            saveButton.textContent = '✓';
+            saveButton.classList.add('save-button');
+            saveButton.title = 'Save';
+            saveButton.onclick = function (event) {
+                event.stopPropagation();
+                submitContact(contact.id);
+            };
 
-        contactCard.appendChild(contactName);
-        contactCard.appendChild(contactNickname);
-        contactCard.appendChild(contactPhone);
-        contactCard.appendChild(contactEmail);
-        contactCard.appendChild(deleteButton);
+            contactCard.appendChild(contactName);
+            contactCard.appendChild(contactNickname);
+            contactCard.appendChild(contactPhone);
+            contactCard.appendChild(contactEmail);
+            contactCard.appendChild(deleteButton);
+            contactCard.appendChild(saveButton);
+            contactCard.appendChild(feedback);
 
-        contactGrid.appendChild(contactCard);
-    });
+            contactGrid.appendChild(contactCard);
+        });
+    }
 }
 
 // Function to delete a contact by ID
-function deleteContact(contactId) {
-    const contactIndex = contacts.findIndex(contact => contact.id === contactId);
-
-    if (contactIndex !== -1) {
-        contacts.splice(contactIndex, 1); 
-        renderContacts(contacts); 
-    }
+function deleteContact() {
+    document.getElementById('confirmDelModal').style.display = 'none';
+    let contactId = document.getElementById('delContactId').value;
+    fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/deleteContact.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userId: userId, contactId: contactId })  // Convert the login data to JSON format
+    })
+        .then(response => {
+            console.log(response.text());
+            return response.json()
+        })// Parse the JSON response from the server
+        .then(json => {
+            console.log(json);
+        })// Parse the JSON response from the server
+        .catch(error => {
+            console.error('Error:', error);
+            //document.getElementById('serverError').textContent = json.error;
+        });
+    reloadContacts();
 }
+
+//Opens modal to confirm deletion of contact
+function confirmDelete(contactId) {
+    document.getElementById('confirmDelModal').style.display = 'block';
+    document.getElementById('delContactId').value = contactId;
+}
+
+//Deletes contact if confirmed
+function handleClick() {
+    document.getElementById('confirmDelModal').style.display = 'none';
+}
+
 
 // Function to open the "Create Contact" modal
 function openCreateModal() {
@@ -78,69 +129,202 @@ function openCreateModal() {
 
 // Function to close the modal
 function closeModal() {
-    document.getElementById('contactModal').style.display = 'none'; 
+    console.log("here");
+    document.getElementById('feedback').textContent = '';
+    document.getElementById('contactModal').style.display = 'none';
 }
 
-function openEditModal(contact) {
-    editingContactId = contact.id;  
+/*function openEditModal(contact) {
+    editingContactId = contact.id;
     document.getElementById('modalTitle').textContent = 'Edit Contact';
     document.getElementById('contactId').value = contact.id;
-    document.getElementById('name').value = contact.name;
-    document.getElementById('nickname').value = contact.nickname;
+    document.getElementById('name').value = contact.firstName;
+    document.getElementById('nickname').value = contact.lastName;
     document.getElementById('phone').value = contact.phone;
     document.getElementById('email').value = contact.email;
-    document.getElementById('contactModal').style.display = 'block'; 
-}
+    document.getElementById('contactModal').style.display = 'block';
+}*/
 
 // Function to submit the contact from the modal form
-function submitContact() {
+function submitContact(id) {
+    const contactData = {
+        contactId: id,
+        firstName: document.getElementById(id + 'Name').value,
+        lastName: document.getElementById(id + 'Nickname').value,  // Assuming 'nickname' is actually 'lastName'
+        phone: document.getElementById(id + 'Phone').value,
+        email: document.getElementById(id + 'Email').value,
+        userId: userId // Include the userId in the contact data
+    };
 
-    const name = document.getElementById('name').value;
-    const nickname = document.getElementById('nickname').value;
-    const phone = document.getElementById('phone').value;
-    const email = document.getElementById('email').value;
+    console.log(contactData);
+    //Set border and shadow color red if required input is empty & undo when filled
+    let name = document.getElementById('createName');
+    let email = document.getElementById('createEmail');
 
-    if (name && nickname && phone && email) {
-        if (editingContactId) {
-            // Edit the existing contact
-            const contactIndex = contacts.findIndex(contact => contact.id === editingContactId);
-            if (contactIndex !== -1) {
-                contacts[contactIndex].name = name;
-                contacts[contactIndex].nickname = nickname;
-                contacts[contactIndex].phone = phone;
-                contacts[contactIndex].email = email;
-            }
+    if (contactData.firstName === '' ||
+        contactData.email === '') {
+        document.getElementById(id + 'feedback').textContent = 'Must have at least first name and email';
+
+        if (contactData.firstName === '') {
+            name.style.borderColor = 'red';
+            name.style.boxShadow = '0px 0px 5px red';
         } else {
-            // Create a new contact
-            const newContact = {
-                id: contacts.length + 1, // Generate a new unique id
-                name,
-                nickname,
-                phone,
-                email
-            };
-            contacts.push(newContact); // Add new contact to the array
+            name.style.borderColor = origColor;
+            name.style.boxShadow = 'none';
         }
 
-        renderContacts(contacts); 
-        closeModal(); 
-    } else {
-        alert('Please fill out all fields.');
+        if (contactData.email === '') {
+            email.style.borderColor = 'red';
+            email.style.boxShadow = '0px 0px 5px red';
+        } else{
+            email.style.borderColor = origColor;
+            email.style.boxShadow = 'none';
+        }
+        return
     }
+
+    if (contactData.firstName !== '') {
+        name.style.borderColor = origColor;
+        name.style.boxShadow = 'none';
+    }
+    if (contactData.email !== '') {
+        email.style.borderColor = origColor;
+        email.style.boxShadow = 'none';
+    }
+
+    if (id === 'create') {
+        fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/saveContact.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(contactData)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(json => {
+                if (json.error) {
+                    throw new Error(json.error);
+                }
+                //document.getElementById('feedback').textContent = 'Contact saved';
+                reloadContacts();
+            })
+            .catch(error => {
+                console.log(error);
+                //document.getElementById('feedback').textContent = 'An error occurred try again';
+            });
+    }
+    else {
+        console.log(contactData);
+        fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/EditContact.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(contactData)
+        })
+            .then(response => {
+                //console.log(response.text());
+                return response.json();
+            })
+            .then(json => {
+                if (json.error) {
+                    throw new Error(json.error);
+                }
+                // document.getElementById('feedback').textContent = 'Contact saved';
+                reloadContacts();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                //document.getElementById('feedback').textContent = 'An error occurred try again';
+            });
+    }
+    document.getElementById('feedback').textContent = ' ';
 }
+
+
 // Function to filter contacts based on search query
 function filterContacts() {
-    const searchQuery = document.getElementById('searchBar').value.toLowerCase();
-    const filteredContacts = contacts.filter(contact =>
-        contact.name.toLowerCase().includes(searchQuery) ||
-        contact.nickname.toLowerCase().includes(searchQuery) ||
-        contact.phone.includes(searchQuery) ||
-        contact.email.toLowerCase().includes(searchQuery)
-    );
-    renderContacts(filteredContacts); 
+    loadData.search = document.getElementById('searchBar').value.toLowerCase();
+    loadData.page = 1;
+    console.log(loadData);
+    document.getElementById('contactGrid').innerHTML = '';
+    loadContacts();
+    //renderContacts(filteredContacts);
 }
 
+function loadMore() {
+    loadData.page += 1;
+    if (loadContacts() === "No Records Found") {
+        loadData.page -= 1;
+    }
+}
 
-window.onload = function() {
-    renderContacts(contacts); 
-};
+function welcomeUser() {
+    let userId = loadData.userId;
+    origColor = document.getElementById('createName').style.borderBlockColor;
+    //let userId = document.cookie.split("; ").find((row) => row.startsWith("userId="))?.split("=")[1];
+    if (typeof userId === 'undefined') {
+        document.getElementById('welcomeUser').innerHTML = 'Welcome User, you are not signed in. Please <a href ="login.html">sign in here</a>';
+    } else {
+        document.getElementById('welcomeUser').textContent = 'Welcome to your contacts manager, User ' + userId;
+    }
+}
+
+function loadContacts() {
+    welcomeUser();
+    fetch('http://www.jordanshouse.site/ContactManager/LAMPAPI/loadContacts.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(loadData)  // Convert the login data to JSON format
+    })
+        .then(response => {
+            //console.log(response.text());
+            return response.json()
+        })// Parse the JSON response from the server
+        .then(json => {
+            console.log(json);
+            if (json.error === "") {
+                contacts = json.contacts;
+                document.getElementById('loadButtonFeedback').textContent = json.error;
+                document.getElementById('serverError').textContent = json.error;
+                renderContacts(contacts);
+            }
+            else {
+                document.getElementById('loadButtonFeedback').textContent = json.error;
+                console.log(loadData.page);
+                return json.error
+            }
+        })// Parse the JSON response from the server
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('serverError').textContent = json.error;
+        });
+
+    return "";
+}
+
+function reloadContacts() {
+    document.getElementById('contactGrid').innerHTML = '';
+    const currentPage = loadData.page;
+    loadData.page = 0;
+    while (loadData.page < currentPage) {
+        loadData.page++;
+        loadContacts();
+    }
+}
+
+//Log out from site and return to sign in
+function logOut() {
+    userId = 0;
+    firstName = "";
+    lastName = "";
+    document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    window.location.href = "index.html";
+}
