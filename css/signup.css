@@ -1,19 +1,6 @@
-/*
-    body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-*/
-
 body {
     font-family: 'San Francisco', 'Poppins', sans-serif;
-    background-color: #badbff;
+    background-color: #e6f2ff;
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
