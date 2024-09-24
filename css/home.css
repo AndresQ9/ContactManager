@@ -1,10 +1,68 @@
 body {
-    font-family: 'San Francisco', 'Poppins', sans-serif; 
-    background-color: #F7F7F7; 
-    margin: 0;
-    padding: 0;
+    font-family: 'San Francisco', 'Poppins', sans-serif;
+    background-color: #badbff;
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
-    color: #333; 
+    color: #333;
+}
+
+header {
+    background-color: #00438c;
+    color: whitesmoke;
+    padding:1px 10px;
+}
+
+em{
+    color:red;
+}
+
+a{
+    color: lightblue;
+}
+
+a:visited{
+    color: #b287fa;
+}
+
+#logoutButton {
+    background-color: #007AFF;
+    color: white;
+    padding: 12px 20px;
+    max-width: 130px;
+    border: 1px solid white;
+    cursor: pointer;
+    margin: 0;
+    font-size: 16px;
+    border-radius: 20px;
+    box-shadow: 0 0 6px white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+    #logoutButton:hover {
+        background-color: #0368d7;
+        transform: translateY(-2px);
+    }
+
+.contact-input {
+    border: none;
+    font-size: larger;
+}
+
+.js-flash-alert {
+    color: red;
+}
+
+.js-flash-alert-contactcard {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    color: red;
+}
+
+.feedback {
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -14,31 +72,31 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 1600px; 
+    max-width: 1600px;
     margin: 0 auto; /* Center the content */
 }
 
 .search-bar {
     padding: 15px;
     width: 80%;
-    max-width: 600px; 
+    max-width: 600px;
     margin-bottom: 20px;
-    border-radius: 20px; 
+    border-radius: 20px;
     border: none;
-    background-color: #ffffff; 
+    background-color: #ffffff;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
     font-size: 16px;
     text-align: center;
     transition: all 0.3s ease;
 }
 
-.search-bar:hover {
-    transform: scale(1.02); 
-}
+    .search-bar:hover {
+        transform: scale(1.02);
+    }
 
 .create-contact-button {
     padding: 12px 20px;
-    background-color: #007AFF; 
+    background-color: #007AFF;
     width: 80%;
     max-width: 280px;
     color: white;
@@ -47,16 +105,15 @@ body {
     margin-top: 10px;
     margin-bottom: 40px;
     font-size: 16px;
-    border-radius: 50px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.create-contact-button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
+    .create-contact-button:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+    }
 
 .contact-grid {
     display: grid;
@@ -77,23 +134,36 @@ body {
     margin-bottom: 10px; /* Space between cards */
     display: flex; /* Align content horizontally */
     align-items: center;
-    justify-content: space-between; 
-    border-bottom: 1px solid #eaeaea; 
+    justify-content: space-between;
+    border-bottom: 1px solid #eaeaea;
     border-left: 6px solid #007BFF;
 }
 
-.contact-card:hover {
-    transform: scale(1.02); 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
+    .contact-card:hover input {
+        border: none;
+        border-bottom: 2px solid #007BFF;
+        outline: none;
+        box-shadow: none;
+        caret-color: black;
+    }
+
+    .contact-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
 
 /* Contact card heading */
-.contact-card h3 {
-    margin-top: 30px;
+.contact-input-header {
+    border: none;
     font-size: 2rem;
     font-weight: 600;
     color: #007BFF;
 }
+
+    .contact-input-header::placeholder {
+        color: #007BFF;
+        opacity: 1;
+    }
 
 /* Contact card paragraph */
 .contact-card p {
@@ -102,11 +172,11 @@ body {
     color: #666;
 }
 
-/* Bold for labels like Nickname, Phone, etc. */
-.contact-card p strong {
-    font-weight: 600;
-    color: #333; /* Use a slightly darker color for emphasis */
-}
+    /* Bold for labels like Nickname, Phone, etc. */
+    .contact-card p strong {
+        font-weight: 600;
+        color: #333; /* Use a slightly darker color for emphasis */
+    }
 
 .modal {
     display: none;
@@ -117,16 +187,16 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
-    align-items: center;
-    justify-content: center;
 }
 
 /* Modal Content */
 .modal-content {
     background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     padding: 40px;
-    margin-top: 160px;   
-    margin-left: 580px;
     border: 3px solid #888;
     width: 700px;
     border-radius: 10px;
@@ -140,32 +210,50 @@ body {
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
-  
+
 .modal-content form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
-  
-.modal-content form label {
-    font-size: 1.1rem;
-}
 
-.modal-content form input {
-    padding: 10px;
-    font-size: 1rem;
+    .modal-content form label {
+        font-size: 1.1rem;
+    }
+
+    .modal-content form input {
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+.modal-content #deleteConfirmButton {
+    padding: 10px 20px;
+    border-color: #007BFF;
+    cursor: pointer;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    font-size: 1rem;
 }
 
-.modal-content form button {
+.modal-content #cancelConfirmButton {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.modal-content #submitButton {
     padding: 10px 20px;
     background-color: #007BFF;
     color: white;
@@ -183,52 +271,152 @@ body {
     color: #007BFF;
 }
 
+.dropdown-content {
+    background-color: #fff;
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    width: 800px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+}
+
+    .dropdown-content form {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+        .dropdown-content form label {
+            font-size: 1.1rem;
+        }
+
+        .dropdown-content form input {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+        }
+
+    .dropdown-content #deleteConfirmButton {
+        padding: 10px 20px;
+        border-color: #007BFF;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+    .dropdown-content #cancelConfirmButton {
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+.submitButton {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 1rem;
+}
+
+.dropdown-content form button:hover {
+    background-color: #0056b3;
+}
+
+.dropdown-content h2 {
+    color: #007BFF;
+    position: relative;
+    font-size: 35px;
+}
+
 .delete-button {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 15px;
     background-color: transparent;
     color: red;
+    border: none;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.save-button {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    background-color: transparent;
+    color: lightgreen;
     border: none;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
 }
 
+    .save-button:hover {
+        color: darkgreen;
+    }
+
 .delete-button:hover {
     color: darkred;
+}
+
+.feedback {
+    color: red;
 }
 
 @media screen and (max-width: 1440px) {
     .home-container {
         max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
     }
-    
+
     .contact-grid {
         width: 100%;
+        justify-items: center;
+        margin: 0 auto;
     }
-    
-    .contact-card h3 {
-        font-size: 1.5rem;
+
+    .contact-card {
+        max-width: 1200px;
+        margin: 0 auto;
     }
-    
-    .contact-card p {
-        font-size: 1rem;
-    }
-    
+
     .search-bar {
         max-width: 500px;
+        margin: 0 auto;
     }
 
     .create-contact-button {
         width: 70%;
         max-width: 240px;
+        margin: 0 auto;
         font-size: 14px;
     }
-    
+
     .modal-content {
         width: 90%;
         margin-left: 5%;
+    }
+
+    .dropdown-content {
+        background-color: #fff;
+        padding-top: 20px;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 50px;
+        width: 800px;
+        border-radius: 50px;
+        margin: 30px auto;
     }
 }
 
@@ -236,20 +424,20 @@ body {
     .home-container {
         padding: 10px;
     }
-    
+
     .contact-card {
         flex-direction: column;
         align-items: flex-start;
     }
-    
-    .contact-card h3 {
-        font-size: 1.3rem;
-    }
-    
-    .contact-card p {
-        font-size: 0.9rem;
-    }
-    
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+        }
+
+        .contact-card p {
+            font-size: 0.9rem;
+        }
+
     .search-bar {
         width: 90%;
     }
@@ -259,7 +447,7 @@ body {
         max-width: none;
         font-size: 13px;
     }
-    
+
     .modal-content {
         width: 95%;
         margin: 0 auto;
@@ -270,16 +458,16 @@ body {
     .contact-grid {
         width: 100%;
     }
-    
+
     .contact-card {
         padding: 15px;
     }
-    
+
     .create-contact-button {
         width: 100%;
         font-size: 12px;
     }
-    
+
     .modal-content {
         width: 100%;
         padding: 20px;
