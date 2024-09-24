@@ -1,15 +1,31 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'San Francisco', 'Poppins', sans-serif;
+    background-color: #e6f2ff;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    color: #333;
+}
+
+main {
     margin: 0;
     padding: 0;
+    background-color: #badbff;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-  }
-  
-  .signup-container {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #00438c;
+    color: whitesmoke;
+    padding: 1px 10px;
+    height: 10vh;
+}
+
+.signup-container {
     width: 550px;
     padding: 60px;
     background-color: #fff;

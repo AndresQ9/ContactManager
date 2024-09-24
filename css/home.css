@@ -7,8 +7,44 @@ body {
     color: #333;
 }
 
-.contact-input{
-    border:none;
+header {
+    background-color: #00438c;
+    color: whitesmoke;
+    padding:1px 10px;
+}
+
+em{
+    color:red;
+}
+
+a{
+    color: lightblue;
+}
+
+a:visited{
+    color: #b287fa;
+}
+
+#logoutButton {
+    background-color: #007AFF;
+    color: white;
+    padding: 12px 20px;
+    max-width: 130px;
+    border: 1px solid white;
+    cursor: pointer;
+    margin: 0;
+    font-size: 16px;
+    border-radius: 20px;
+    box-shadow: 0 0 6px white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+    #logoutButton:hover {
+        background-color: #0368d7;
+        transform: translateY(-2px);
+    }
+
+.contact-input {
+    border: none;
     font-size: larger;
 }
 

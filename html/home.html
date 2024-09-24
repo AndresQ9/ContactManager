@@ -7,68 +7,86 @@
   <link rel="stylesheet" href="../css/home.css">
 </head>
 <body>
-  <div class="home-container">
-    <!-- Search bar and Create button -->
-    <input type="text" id="searchBar" placeholder="Search Contacts" oninput="filterContacts()" class="search-bar">
-    <button class="create-contact-button" id="createButton" onclick="toggleCreateDropdown()">Create</button>
-    <span role="alert" class="js-flash-alert" id="serverError"></span>
-
-    <!-- Dropdown menu for Create Contact -->
-    <div class="dropdown">
-      <div class="dropdown-content" id="createContactForm">
-        <h2>Create a New Contact</h2>
-        <form>
-          <label for="createName">First Name:</label>
-          <input type="text" id="createName" name="name" required><br>
-
-          <label for="createNickname">Last Name:</label>
-          <input type="text" id="createNickname" name="nickname" required><br>
-
-          <label for="createPhone">Phone:</label>
-          <input type="tel" id="createPhone" name="phone" required><br>
-
-          <label for="createEmail">Email:</label>
-          <input type="email" id="createEmail" name="email" required><br>
-          <span class="js-flash-alert" id="createfeedback"></span>
-          <button class="submitButton" type="button" onclick="submitContact('create')">Save Contact</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- Contact grid where the contact cards will be rendered -->
-    <div class="contact-grid" id="contactGrid"></div>
-    <button class="create-contact-button" onclick="loadMore()">load more</button>
-    <span id="loadButtonFeedback" class="feedback"></span>
-
-
-  <div id="confirmDelModal" class="modal">
-        <div class="modal-content">
-          <form>
-            <span class="close" onclick="handleClick()">&times;</span>
-            <input type="hidden" id="delContactId" name="delContactId" />
-            <h2>Delete Confirmation</h2>
-            <div>Do you want to delete contact </div>
-            <button id="deleteConfirmButton" type="button" onclick="deleteContact()">Delete Contact</button>
-            <button id="cancelConfirmButton" type="button" onclick="handleClick()">Cancel</button>
-          </form>
+    <!--Header-->
+    <header >
+        <div style="display:flex; justify-content: space-between;">
+            <div style="width:70%">
+                <h1>Group 4 Contact Manager</h1>
+                <h3 id="welcomeUser">Welcome to your contacts manager, User </h3>
+            </div>
+            <div style="width:130px; margin: auto; margin-right: 0px">
+                <button id="logoutButton" onclick="logOut()"><b>LOG OUT</b></button>
+            </div>
         </div>
-    </div>
+        <hr />
+    </header>
 
-  <!-- Include the JavaScript file -->
-  <script src="../js/home.js"></script>
-  </div>
-  <script>
-    const dropdown = document.querySelector('.dropdown-content');
-    dropdown.style.display = 'none';
-    function toggleCreateDropdown() {
-      if (dropdown.style.display === 'block') {
+
+        <div class="home-container">
+            <!-- Search bar and Create button -->
+            <input type="text" id="searchBar" placeholder="Search Contacts" oninput="filterContacts()" class="search-bar"><br />
+            <button class="create-contact-button" id="createButton" onclick="toggleCreateDropdown()"><b>CREATE CONTACT</b></button><br />
+            <span role="alert" class="js-flash-alert" id="serverError"></span>
+
+            <!-- Dropdown menu for Create Contact -->
+            <div class="dropdown">
+                <div class="dropdown-content" id="createContactForm">
+                    <h2>Create a New Contact</h2>
+                    <form>
+                        <label for="createName">First Name<em>*</em>:</label>
+                        <input type="text" id="createName" name="name" required maxlenght="50"><br>
+
+                        <label for="createNickname">Last Name:</label>
+                        <input type="text" id="createNickname" name="nickname" required maxlenght="50"><br>
+
+                        <label for="createPhone">Phone:</label>
+                        <input type="tel" id="createPhone" name="phone" required maxlenght="50"><br>
+
+                        <label for="createEmail">Email<em>*</em>:</label>
+                        <input type="email" id="createEmail" name="email" required maxlenght="50"><br>
+
+                        <span class="js-flash-alert" id="createfeedback"></span>
+                        <button class="submitButton" type="button" onclick="submitContact('create')"><b>SAVE CONTACT</b></button>
+                    </form>
+                </div>
+            </div>
+            <br />
+            <!-- Contact grid where the contact cards will be rendered -->
+            <div class="contact-grid" id="contactGrid"></div>
+            <button class="create-contact-button" onclick="loadMore()"><b>LOAD MORE</b></button>
+            <span id="loadButtonFeedback" class="feedback"></span>
+
+            <!--Modal for confirmation of contact deletion-->
+            <div id="confirmDelModal" class="modal">
+                <div class="modal-content">
+                    <form>
+                        <span class="close" onclick="handleClick()">&times;</span>
+                        <input type="hidden" id="delContactId" name="delContactId" />
+                        <h2>Delete Confirmation</h2>
+                        <div>Do you want to delete contact </div>
+                        <button id="deleteConfirmButton" type="button" onclick="deleteContact()">Delete Contact</button>
+                        <button id="cancelConfirmButton" type="button" onclick="handleClick()">Cancel</button>
+                    </form>
+                </div>
+            </div>
+            <!--Log out button-->
+            <!--<button class="log-out-button" id="logoutButton" onclick="logOut()"><b>LOG OUT</b></button>-->
+            <!-- Include the JavaScript file -->
+            <script src="../js/home.js"></script>
+        </div>
+
+    <script>
+        const dropdown = document.querySelector('.dropdown-content');
         dropdown.style.display = 'none';
-        document.getElementById("createButton").textContent = "Create"
-      } else {
-        dropdown.style.display = 'block';
-        document.getElementById("createButton").textContent = "Cancel"
-      }
-    }
+        function toggleCreateDropdown() {
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+                document.getElementById("createButton").innerHTML = '<b>CREATE CONTACT</b>'
+            } else {
+                dropdown.style.display = 'block';
+                document.getElementById("createButton").innerHTML = '<b>CANCEL</b>'
+            }
+        }
 
     // Attach toggle functionality to the Create button
     document.querySelector('.create-contact-button').onclick = toggleCreateDropdown;
