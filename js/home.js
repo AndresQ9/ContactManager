@@ -167,7 +167,6 @@ function submitContact(id) {
 
         if (contactData.firstName === '') {
             name.style.borderColor = 'red';
-            console.log("hi");
             name.style.boxShadow = '0px 0px 5px red';
         } else {
             name.style.borderColor = origColor;
